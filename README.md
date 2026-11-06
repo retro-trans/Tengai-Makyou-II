@@ -16,9 +16,9 @@ This is an in-progress translation. Japanese text may remain, and a complete pla
 
 Use an image extracted from your own original disc. The patch applies to the exact original below, regardless of filename. Other editions and already modified images are unsupported.
 
-**RVZ:** the **Retro Trans Tools 0.5.21 Windows test build** supports RVZ directly in Automatic: approve ISO extraction, select the release, choose **RVZ** output or **Original format** for ISO, then patch. Your original RVZ and extracted ISO are retained. RVZ output is verified against the complete patched ISO. The converter is bundled.
+**RVZ:** [Retro Trans Tools 0.5.21 for Windows](https://github.com/retro-trans/retro-trans-tools/releases/tag/v0.5.21) supports RVZ directly in Automatic: approve ISO extraction, select the release, choose **RVZ** output or **Original format** for ISO, then patch. Your original RVZ and extracted ISO are retained. RVZ output is verified against the complete patched ISO. The converter is bundled. Requires Windows 10 1903 or later, x64, and the current [Microsoft Visual C++ v14 x64 runtime](https://aka.ms/vc14/vc_redist.x64.exe).
 
-**0.5.21 is a local test build, not yet a public download.** With the current public **0.5.20** release, convert RVZ to ISO in Dolphin before following the steps above; optionally convert the patched ISO back to RVZ afterward. Renaming does not convert formats. The same patch and ISO hashes apply to both workflows; RVZ compression hashes are not disc identities. [RVZ test evidence](docs/RVZ-0.8.0.json).
+With older **0.5.20** installations, update or convert RVZ to ISO in Dolphin before patching; optionally convert the patched ISO back to RVZ afterward. Mac and Android downloads are unchanged; direct RVZ conversion is Windows-only. Renaming does not convert formats. The same patch and ISO hashes apply to both workflows; RVZ compression hashes are not disc identities. [RVZ test evidence](docs/RVZ-0.8.0.json).
 
 | Image | Bytes | SHA-256 |
 | --- | ---: | --- |

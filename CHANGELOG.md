@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.0 published RVZ tools link — 2026-11-06
+
+- Link the published Retro Trans Tools 0.5.21 Windows release and update RVZ installation instructions, requirements and older-client guidance. Retain ISO-based patch identities and verification.
+- Documentation only; no game or release-asset bytes changed. Conversion checks do not establish gameplay or physical-console compatibility.
+
 ## 0.8.0 RVZ installation notes — 2026-11-06
 
 - Document direct RVZ input and verified RVZ/ISO output in the local Retro Trans Tools 0.5.21 Windows test build. Explain extraction consent, retained original/extracted ISO, and complete ISO verification; publish the existing conversion-test evidence.
