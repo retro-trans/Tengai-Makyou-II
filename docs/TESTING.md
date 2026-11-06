@@ -26,3 +26,9 @@ HD fonts are deferred. Historical overworld-transition scene-heap failures, a se
 ## Remaining validation
 
 Full-game translation and a complete playthrough are not finished. Physical-console operation, real GPU/cache behavior, natural full-game transitions, actual save/write/restart/reload and long-session stability remain unverified. Public version 0.8.0 does not mean measured 80% coverage.
+
+## Live Automatic verification — 2026-11-06
+
+The published Retro Trans Tools 0.5.20 backend refreshed the public catalog, recognized the actual original ISO, selected 0.8.0 through Latest, Next version only and the explicit version, downloaded the live release patch into an empty cache, applied it, and verified the complete target hash. The output was recognized as already current; the source remained unchanged and attempts to overwrite the source or an existing output were refused. All earlier catalog release, DCP and withdrawn records remained unchanged. This tested the actual Automatic backend, not GUI automation or gameplay. [Machine-readable verification](AUTOMATIC-0.8.0.json).
+
+Hosted registration/catalog validation: [successful workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42171219265).

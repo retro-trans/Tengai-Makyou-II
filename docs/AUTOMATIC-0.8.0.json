@@ -1,0 +1,37 @@
+{
+  "version": "0.8.0",
+  "app_version": "0.5.20",
+  "app_source_commit": "cb01c121331c0ae0f06c221fc364280c56faef72",
+  "live_public_catalog": true,
+  "empty_cache_download": true,
+  "actual_original_recognized": true,
+  "routes": {
+    "Latest": {
+      "target": "0.8.0",
+      "steps": 1
+    },
+    "Next version only": {
+      "target": "0.8.0",
+      "steps": 1
+    },
+    "0.8.0": {
+      "target": "0.8.0",
+      "steps": 1
+    }
+  },
+  "output_sha256": "39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e",
+  "output_bytes": 1459978240,
+  "output_recognized_as_current": true,
+  "source_preserved": true,
+  "overwrite_rejections": {
+    "source_overwrite": "Choose a different output file to preserve your inputs.",
+    "existing_output": "The output already exists. Choose a new filename."
+  },
+  "unrelated_catalog_records_unchanged": true,
+  "patch_bytes": 2197009,
+  "patch_sha256": "1901519aca8ff4c20e435a3b140e554e8ffe8d310ffb371b8fd23618ad59d6af",
+  "emulator_launched": false,
+  "game_audio_used": false,
+  "hardware_tested": false,
+  "scope": "Actual published Automatic backend: refresh, recognition, routing, live empty-cache download, decode, output verification; no GUI automation or gameplay validation."
+}
