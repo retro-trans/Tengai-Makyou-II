@@ -25,6 +25,8 @@ For manual installation, download the `.xdelta` asset and use **Apply xdelta** w
 
 ## Included work
 
+- UI and navigation improvements for English text: roomier labels and descriptions, two-column lists, clearer actions, and more consistent navigation than the original menus.
+- New **Options → Random Encounters** setting: **None / Less / Default / More**. Adjust random walking encounters while retaining bosses and scripted battles.
 - English dialogue, menus, item and equipment descriptions, scrolls, Arts, battle messages, and movie subtitles developed during the project; translation remains incomplete.
 - Normal-resolution **Balsamiq Sans Regular** lettering and clearer menu labels. All Arts command categories use **Arts**.
 - Item, scroll, and equipment flows select an action, a user, and an item. Give / Exchange then selects a recipient, including the giver, and a destination slot. The selected user's highlight remains visible while choosing an item.

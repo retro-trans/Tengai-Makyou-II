@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.0 release-note revision — 2026-11-06
+
+- Reorganize the public release notes using SRW-Z's release-note structure: Apply, What's Included, validation, downloads/source, and acknowledgements.
+- Highlight the added English-focused UI/navigation improvements and Options → Random Encounters (None / Less / Default / More), alongside Direct Control. Add the same two features to the repository README.
+- Documentation only. Published patch bytes, manifests, checksums, catalog identities and game behavior remain unchanged.
+
 ## 0.8.0 — 2026-11-06
 
 First public release in this repository, packaging internal test build 0.1.2503 (delivery checkpoint 0.1.2506). Game bytes are unchanged from that checkpoint.
