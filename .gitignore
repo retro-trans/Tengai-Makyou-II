@@ -1,0 +1,8 @@
+__pycache__/
+*.iso
+*.rvz
+*.gcm
+*.xdelta
+/private/
+/release-local.json
+/dist/

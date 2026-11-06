@@ -1,0 +1,25 @@
+{
+  "version": "0.8.0",
+  "internal_build": "0.1.2503",
+  "delivery_checkpoint": "0.1.2506",
+  "game_bytes_changed_for_public_release": false,
+  "source": {
+    "bytes": 1459978240,
+    "sha256": "0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470",
+    "disc_id": "GT2J18"
+  },
+  "target": {
+    "bytes": 1459978240,
+    "sha256": "39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e"
+  },
+  "dol_sha256": "5e15ce4ceb47e19fb8de519a98b1e669a80913d0bdbefd0b441bb167c3ec8bc3",
+  "evidence": {
+    "work/analysis/tested-field-refusals-0.1.2503-2506.json": "28b345117b22a0e005228e4b7c6798dd77e0a687180173b8d92cbd97e7a5c161",
+    "work/analysis/field-refusals-native-0.1.2504.json": "bb6be683327ae38d3d693460c8885f9361f05113fa774df00136c839abfe6914",
+    "work/analysis/refusal-lifetime-0.1.2505.json": "2e16fd107bdb4af3ecfaeade7a22a2316b856f554d113c370bfd4d3eab3b46fd",
+    "docs/TEST_NOTES-0.1.2503.txt": "a30f3903fc1bc22bdcb41e76dc7a0c2cda49a182ce40a741935bc75299005173"
+  },
+  "hardware_tested": false,
+  "full_playthrough_tested": false,
+  "complete_translation": false
+}
