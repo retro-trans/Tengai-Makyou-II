@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "manifest_sha256": "6053429df9b4b612a633da3254e85bcaf2dea077b9bce4c8074b1ba0c01d2e8c",
+  "patches": [
+    {
+      "patch": "Tengai-Makyou-II-English-v0.8.0.xdelta",
+      "roundtrip_verified": true,
+      "target_sha256": "39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e"
+    }
+  ]
+}
