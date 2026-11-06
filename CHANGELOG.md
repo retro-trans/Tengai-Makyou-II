@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.0 RVZ installation notes — 2026-11-06
+
+- Document direct RVZ input and verified RVZ/ISO output in the local Retro Trans Tools 0.5.21 Windows test build. Explain extraction consent, retained original/extracted ISO, and complete ISO verification; publish the existing conversion-test evidence.
+- Distinguish the unpublished test build from public 0.5.20, which still needs RVZ-to-ISO conversion in Dolphin before patching. ISO hashes identify the disc independently of RVZ compression settings.
+- Documentation only; release assets, catalog identities and game bytes are unchanged. Conversion verification does not establish gameplay or physical GameCube compatibility.
+
 ## 0.8.0 party-control wording correction — 2026-11-06
 
 - Clarify that manual/automatic party control already exists in the original game. Our change only improves the English Direct Control / AI Control labels and text layout; no party-control logic was added. Correct the release introduction, feature list and README.

@@ -1,0 +1,32 @@
+{
+  "recorded_on": "2026-11-06",
+  "tools_build_status": "local_unpublished",
+  "public_tools_release_at_verification": "0.5.20",
+  "disc_identity": "Expanded ISO size and SHA-256; RVZ container hashes vary with compression settings.",
+  "source_iso_sha256": "0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470",
+  "real_rvz": {
+    "app_version": "0.5.21",
+    "game_id": "tengai-makyou-ii",
+    "target_version": "0.8.0",
+    "executable_sha256": "f01e62baed241b2ffea5110bf0727d4ff1a1e11d24c55a8173d1640b8935279c",
+    "source_rvz_sha256": "4b3fabd94be99acf9edc85a1740de3ee2076956c8844faf8b7659e3b765fb4f6",
+    "source_iso_bytes": 1459978240,
+    "target_iso_sha256": "39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e",
+    "target_iso_bytes": 1459978240,
+    "target_rvz_sha256": "8c210e84cf6416a7abba6efd8ee2963a6620c429802195fb66573167bdb2cc74",
+    "target_rvz_bytes": 1248111100,
+    "packaged_automatic_real_rvz_input": true,
+    "live_patch_download": true,
+    "isolated_empty_app_cache": true,
+    "rvz_output_independent_full_roundtrip": true,
+    "recognized_as_current": true,
+    "source_preserved": true,
+    "existing_output_refused": true,
+    "temporary_discs_removed": true,
+    "game_emulator_launched": false,
+    "game_audio_used": false,
+    "hardware_tested": false,
+    "seconds": 278.73
+  },
+  "limits": "Conversion and patch verification only. No emulator gameplay, real-hardware operation or actual memory-card write/restart/reload validated."
+}

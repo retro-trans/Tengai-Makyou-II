@@ -14,7 +14,11 @@ This is an in-progress translation. Japanese text may remain, and a complete pla
 4. Choose a new output ISO filename and click **Patch**. The app downloads the patch and verifies both the original and the completed ISO.
 5. Cold boot the patched image and load an in-game save. Older save states can retain old code or text.
 
-Use an ISO extracted from your own original disc. RVZ files must first be converted back to an unmodified ISO; renaming an RVZ does not convert it. The patch applies to the exact original below, regardless of filename. Other editions and already modified images are unsupported.
+Use an image extracted from your own original disc. The patch applies to the exact original below, regardless of filename. Other editions and already modified images are unsupported.
+
+**RVZ:** the **Retro Trans Tools 0.5.21 Windows test build** supports RVZ directly in Automatic: approve ISO extraction, select the release, choose **RVZ** output or **Original format** for ISO, then patch. Your original RVZ and extracted ISO are retained. RVZ output is verified against the complete patched ISO. The converter is bundled.
+
+**0.5.21 is a local test build, not yet a public download.** With the current public **0.5.20** release, convert RVZ to ISO in Dolphin before following the steps above; optionally convert the patched ISO back to RVZ afterward. Renaming does not convert formats. The same patch and ISO hashes apply to both workflows; RVZ compression hashes are not disc identities. [RVZ test evidence](docs/RVZ-0.8.0.json).
 
 | Image | Bytes | SHA-256 |
 | --- | ---: | --- |
