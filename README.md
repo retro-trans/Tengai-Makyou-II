@@ -30,7 +30,7 @@ For manual installation, download the `.xdelta` asset and use **Apply xdelta** w
 - English dialogue, menus, item and equipment descriptions, scrolls, Arts, battle messages, and movie subtitles developed during the project; translation remains incomplete.
 - Normal-resolution **Balsamiq Sans Regular** lettering and clearer menu labels. All Arts command categories use **Arts**.
 - Item, scroll, and equipment flows select an action, a user, and an item. Give / Exchange then selects a recipient, including the giver, and a destination slot. The selected user's highlight remains visible while choosing an item.
-- **Direct Control / AI Control** in Strategy uses the game's existing control policy.
+- Clearer **Direct Control / AI Control** labels for the original game's existing manual/automatic Strategy setting; no new party-control functionality.
 - Eight English castle title banners, preserving the original decorative frames and colors. Opening movie files remain original; movies have not been reencoded.
 - Complete English field-use refusal messages such as “Ice Blade cannot be used outside battle.”
 

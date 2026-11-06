@@ -1,9 +1,14 @@
 # Changelog
 
+## 0.8.0 party-control wording correction — 2026-11-06
+
+- Clarify that manual/automatic party control already exists in the original game. Our change only improves the English Direct Control / AI Control labels and text layout; no party-control logic was added. Correct the release introduction, feature list and README.
+- Documentation only; published patch and catalog identities remain unchanged.
+
 ## 0.8.0 release-note revision — 2026-11-06
 
 - Reorganize the public release notes using SRW-Z's release-note structure: Apply, What's Included, validation, downloads/source, and acknowledgements.
-- Highlight the added English-focused UI/navigation improvements and Options → Random Encounters (None / Less / Default / More), alongside Direct Control. Add the same two features to the repository README.
+- Highlight the added English-focused UI/navigation improvements and Options → Random Encounters (None / Less / Default / More), alongside clearer labels for existing manual/automatic party control. Add the same two features to the repository README.
 - Documentation only. Published patch bytes, manifests, checksums, catalog identities and game behavior remain unchanged.
 
 ## 0.8.0 — 2026-11-06
