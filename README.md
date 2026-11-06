@@ -27,6 +27,8 @@ With older **0.5.20** installations, update or convert RVZ to ISO in Dolphin bef
 
 For manual installation, download the `.xdelta` asset and use **Apply xdelta** with a matching input and a new output filename. Use `Tengai-Makyou-II-English-v0.8.1.xdelta` for the Japanese original, or `Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta` for exact English v0.8.0 (SHA-256 `39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e`). `BUILD-MANIFEST.json`, `VALIDATION.json`, and `SHA256SUMS.txt` provide the exact identities and patch verification. No complete game image is distributed.
 
+Automatic from the Japanese original and English v0.8.0, plus real RVZ input/output with the published Windows 0.5.21 app, passed complete output verification. [Automatic evidence](docs/AUTOMATIC-0.8.1.json) · [RVZ evidence](docs/RVZ-0.8.1.json).
+
 ## Included work
 
 - UI and navigation improvements for English text: roomier labels and descriptions, two-column lists, clearer actions, and more consistent navigation than the original menus.

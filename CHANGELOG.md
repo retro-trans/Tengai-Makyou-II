@@ -2,6 +2,8 @@
 
 ## 0.8.1 — 2026-11-07
 
+- Live Automatic original/English 0.8.0 routes and the unchanged public Windows 0.5.21 EXE with actual RVZ input/output pass complete hashes; historical catalog identities and old release assets retained.
+
 - Fix the native field Item nested-English healing-message freeze reported with Buckwheat Dumpling. Reserve 64x3 in the real producer; HP/RNG/item consumption and visual frame unchanged.72 native cases/12 repeated cycles, Store/reopen and captured pressure checks pass; exact reported lakeside save not replayed.
 - Add three missing opening cues before Mother's Manjimaru line. Keep all 658 existing cues and original movie/audio bytes.661 records/2360 native boundary checks/45 additional cases and muted actual opening/return pass.
 - Package exact internal 0.1.2518 without further game-byte changes, with original-source and English 0.8.0 upgrade patches for Retro Trans Tools Automatic/Apply xdelta, including Windows 0.5.21 RVZ conversion.

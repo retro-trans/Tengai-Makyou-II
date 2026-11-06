@@ -101,3 +101,11 @@ Full-game translation and a complete playthrough are not finished. Physical-cons
 The published Retro Trans Tools 0.5.20 backend refreshed the public catalog, recognized the actual original ISO, selected 0.8.0 through Latest, Next version only and the explicit version, downloaded the live release patch into an empty cache, applied it, and verified the complete target hash. The output was recognized as already current; the source remained unchanged and attempts to overwrite the source or an existing output were refused. All earlier catalog release, DCP and withdrawn records remained unchanged. This tested the actual Automatic backend, not GUI automation or gameplay. [Machine-readable verification](AUTOMATIC-0.8.0.json).
 
 Hosted registration/catalog validation: [successful workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42171219265).
+
+## Live public Automatic and RVZ verification — 2026-11-07
+
+Retro Trans Tools 0.5.21 refreshed the published catalog, downloaded both patches into an initially empty cache and applied them to the actual Japanese original and exact English 0.8.0 images. Both complete outputs matched English 0.8.1, were recognized as current and preserved their inputs. Existing-output/source overwrite refusal passed. Latest and explicit 0.8.1 choose the full or small upgrade patch automatically. Next version only from 0.8.0 reaches 0.8.1; from the Japanese original it deliberately selects the earlier 0.8.0 release. All previous catalog, withdrawn and DCP records stayed unchanged. [Automatic proof](AUTOMATIC-0.8.1.json).
+
+The unchanged downloaded public Windows 0.5.21 EXE also passed actual original RVZ input, a live catalog refresh, live patch download and RVZ output. Independent extraction reproduced the exact 0.8.1 ISO hash; current recognition, source preservation and existing-output refusal passed. Private full-disc outputs were removed. The test used packaged Automatic entry points, not GUI clicking or a gameplay test. [RVZ proof](RVZ-0.8.1.json).
+
+Hosted package-registration/catalog validation: [successful scoped workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42294866155). No physical-hardware claims are added.

@@ -1,0 +1,75 @@
+{
+  "version": "0.8.1",
+  "app_version": "0.5.21",
+  "checks": "passed",
+  "backend_commit": "c0fea9b3c9d000d3441f1912c1b7d7e33ab9d42a",
+  "live_public_catalog": true,
+  "both_live_downloads_verified": true,
+  "isolated_initially_empty_cache": true,
+  "cases": [
+    {
+      "source_version": "original",
+      "source_sha256": "0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470",
+      "routes": {
+        "Latest": {
+          "target": "0.8.1",
+          "patch": "Tengai-Makyou-II-English-v0.8.1.xdelta",
+          "steps": 1
+        },
+        "Next version only": {
+          "target": "0.8.0",
+          "patch": "Tengai-Makyou-II-English-v0.8.0.xdelta",
+          "steps": 1
+        },
+        "0.8.1": {
+          "target": "0.8.1",
+          "patch": "Tengai-Makyou-II-English-v0.8.1.xdelta",
+          "steps": 1
+        }
+      },
+      "output_sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee",
+      "output_bytes": 1459978240,
+      "recognized_current": true,
+      "source_preserved": true,
+      "overwrite_rejections": {
+        "source_overwrite": "Choose a different output file to preserve your inputs.",
+        "existing_output": "The output already exists. Choose a new filename."
+      },
+      "temporary_output_removed": true
+    },
+    {
+      "source_version": "0.8.0",
+      "source_sha256": "39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e",
+      "routes": {
+        "Latest": {
+          "target": "0.8.1",
+          "patch": "Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta",
+          "steps": 1
+        },
+        "Next version only": {
+          "target": "0.8.1",
+          "patch": "Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta",
+          "steps": 1
+        },
+        "0.8.1": {
+          "target": "0.8.1",
+          "patch": "Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta",
+          "steps": 1
+        }
+      },
+      "output_sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee",
+      "output_bytes": 1459978240,
+      "recognized_current": true,
+      "source_preserved": true,
+      "overwrite_rejections": {
+        "source_overwrite": "Choose a different output file to preserve your inputs.",
+        "existing_output": "The output already exists. Choose a new filename."
+      },
+      "temporary_output_removed": true
+    }
+  ],
+  "output_sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee",
+  "all_previous_catalog_records_unchanged": true,
+  "no_GUI_or_emulator_or_game_audio": true,
+  "hardware_tested": false
+}
