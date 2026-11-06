@@ -2,7 +2,7 @@
 
 An English translation patch for the Japanese Nintendo GameCube release of **Tengai Makyou II: Manji Maru**. Maintained by [binhlt0402](https://github.com/binhlt0402) at [retro-trans](https://github.com/retro-trans).
 
-**[Download version 0.8.0](https://github.com/retro-trans/Tengai-Makyou-II/releases/tag/v0.8.0)** · [Changes](CHANGELOG.md) · [Testing and known limits](docs/TESTING.md)
+**[Download version 0.8.1](https://github.com/retro-trans/Tengai-Makyou-II/releases/tag/v0.8.1)** · [Changes](CHANGELOG.md) · [Testing and known limits](docs/TESTING.md)
 
 This is an in-progress translation. Japanese text may remain, and a complete playthrough has not been verified. The version number is a release identifier, not a measured translation percentage.
 
@@ -10,11 +10,11 @@ This is an in-progress translation. Japanese text may remain, and a complete pla
 
 1. Get the current [Retro Trans Tools Windows release](https://github.com/retro-trans/retro-trans-tools/releases/latest).
 2. Open **Automatic**, then **Refresh catalog**.
-3. Browse to your original Japanese GameCube ISO. Select **0.8.0** or **Latest**.
+3. Browse to your original Japanese GameCube ISO or exact English v0.8.0 image. Select **0.8.1** or **Latest**.
 4. Choose a new output ISO filename and click **Patch**. The app downloads the patch and verifies both the original and the completed ISO.
 5. Cold boot the patched image and load an in-game save. Older save states can retain old code or text.
 
-Use an image extracted from your own original disc. The patch applies to the exact original below, regardless of filename. Other editions and already modified images are unsupported.
+Use an image extracted from your own original disc. The patch applies to the exact original below, regardless of filename. Other editions and modified images are unsupported, except the exact English v0.8.0 image supported by the upgrade patch.
 
 **RVZ:** [Retro Trans Tools 0.5.21 for Windows](https://github.com/retro-trans/retro-trans-tools/releases/tag/v0.5.21) supports RVZ directly in Automatic: approve ISO extraction, select the release, choose **RVZ** output or **Original format** for ISO, then patch. Your original RVZ and extracted ISO are retained. RVZ output is verified against the complete patched ISO. The converter is bundled. Requires Windows 10 1903 or later, x64, and the current [Microsoft Visual C++ v14 x64 runtime](https://aka.ms/vc14/vc_redist.x64.exe).
 
@@ -23,9 +23,9 @@ With older **0.5.20** installations, update or convert RVZ to ISO in Dolphin bef
 | Image | Bytes | SHA-256 |
 | --- | ---: | --- |
 | Original Japanese ISO | 1,459,978,240 | `0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470` |
-| English 0.8.0 ISO | 1,459,978,240 | `39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e` |
+| English 0.8.1 ISO | 1,459,978,240 | `9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee` |
 
-For manual installation, download the `.xdelta` asset and use **Apply xdelta** with the same original ISO and a new output filename. `BUILD-MANIFEST.json`, `VALIDATION.json`, and `SHA256SUMS.txt` provide the exact identities and patch verification. No complete game image is distributed.
+For manual installation, download the `.xdelta` asset and use **Apply xdelta** with a matching input and a new output filename. Use `Tengai-Makyou-II-English-v0.8.1.xdelta` for the Japanese original, or `Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta` for exact English v0.8.0 (SHA-256 `39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e`). `BUILD-MANIFEST.json`, `VALIDATION.json`, and `SHA256SUMS.txt` provide the exact identities and patch verification. No complete game image is distributed.
 
 ## Included work
 
@@ -40,7 +40,7 @@ For manual installation, download the `.xdelta` asset and use **Apply xdelta** w
 
 ## Status and feedback
 
-0.8.0 packages the verified internal checkpoint **0.1.2503**, without changing its game bytes. Automated native checks and patch round trips have passed. **Physical GameCube operation, a full playthrough, natural transition timing, and actual memory-card write/restart/reload are unverified.** Read [testing notes](docs/TESTING.md) for memory and runtime risks.
+0.8.1 packages the verified internal checkpoint **0.1.2518**, without changing its game bytes. This release repairs the field Item healing-message freeze and adds three omitted opening subtitles. Native checks, a muted Dolphin opening replay and patch round trips have passed. **Physical GameCube operation, a full playthrough, natural transition timing, and actual memory-card write/restart/reload are unverified.** Read [testing notes](docs/TESTING.md) for memory and runtime risks.
 
 Report problems through [Issues](https://github.com/retro-trans/Tengai-Makyou-II/issues). Include the patch version, location, steps, and a screenshot where possible. Do not upload game images or original game files.
 

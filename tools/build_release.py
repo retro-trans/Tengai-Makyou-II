@@ -9,6 +9,7 @@ import tempfile
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', type=Path, required=True)
+    parser.add_argument('--previous', type=Path, required=True, help='Exact public English0.8.0 ISO')
     parser.add_argument('--target', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--library', type=Path, required=True)
@@ -19,13 +20,14 @@ def main():
     from retro_trans.game_library import read, validate_registration
     root = Path(__file__).resolve().parents[1]
     provenance = json.loads((root/'release/provenance.json').read_text(encoding='utf-8'))
-    for key, path in [('source', args.source), ('target', args.target)]:
+    for key, path in [('source', args.source), ('target', args.target), ('upgrade_source', args.previous)]:
         expected = provenance[key]
         if path.stat().st_size != expected['bytes'] or sha256_file(path) != expected['sha256']:
             parser.error('Incorrect ' + key + ' ISO identity')
     template = json.loads((root/'release/config.example.json').read_text(encoding='utf-8'))
     template['source_commit'] = args.commit
     template['patches'][0].update(source=str(args.source.resolve()), target=str(args.target.resolve()))
+    template['patches'][1].update(source=str(args.previous.resolve()), target=str(args.target.resolve()))
     library = read(args.library)
     validate_registration(template, 'retro-trans/Tengai-Makyou-II', library)
     with tempfile.TemporaryDirectory(prefix='tengai-release-') as temporary:
@@ -33,7 +35,7 @@ def main():
         config.write_text(json.dumps(template, indent=2)+'\n', encoding='utf-8')
         build_release(config, args.out, library=library)
     validate_directory(args.out)
-    print('Verified 0.8.0 patch and canonical release metadata:', args.out)
+    print('Verified 0.8.1 patches and canonical release metadata:', args.out)
 
 if __name__ == '__main__':
     main()

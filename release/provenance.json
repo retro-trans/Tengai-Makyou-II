@@ -1,25 +1,39 @@
 {
-  "version": "0.8.0",
-  "internal_build": "0.1.2503",
-  "delivery_checkpoint": "0.1.2506",
+  "version": "0.8.1",
+  "internal_build": "0.1.2518",
+  "delivery_checkpoint": "0.1.2524",
   "game_bytes_changed_for_public_release": false,
   "source": {
     "bytes": 1459978240,
     "sha256": "0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470",
-    "disc_id": "GT2J18"
+    "disc_id": "GT2J18",
+    "revision": 0
   },
   "target": {
     "bytes": 1459978240,
+    "sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee"
+  },
+  "upgrade_source": {
+    "version": "0.8.0",
+    "bytes": 1459978240,
     "sha256": "39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e"
   },
-  "dol_sha256": "5e15ce4ceb47e19fb8de519a98b1e669a80913d0bdbefd0b441bb167c3ec8bc3",
+  "dol_sha256": "dd84e0ff5acf8a3c274135729fcfe31f3f5323e22187fb5208b38bdbd4dfa281",
   "evidence": {
-    "work/analysis/tested-field-refusals-0.1.2503-2506.json": "28b345117b22a0e005228e4b7c6798dd77e0a687180173b8d92cbd97e7a5c161",
-    "work/analysis/field-refusals-native-0.1.2504.json": "bb6be683327ae38d3d693460c8885f9361f05113fa774df00136c839abfe6914",
-    "work/analysis/refusal-lifetime-0.1.2505.json": "2e16fd107bdb4af3ecfaeade7a22a2316b856f554d113c370bfd4d3eab3b46fd",
-    "docs/TEST_NOTES-0.1.2503.txt": "a30f3903fc1bc22bdcb41e76dc7a0c2cda49a182ce40a741935bc75299005173"
+    "work/analysis/tested-opening-gap-0.1.2518-2524.json": "78770b7af0f1b76da23c0ecba5f4fc7caf0a4e61ae3ec2b86423d3085b3cc02b",
+    "work/analysis/item-healing-native-0.1.2510.json": "4702040720f2c262359f7521d3118927cf4263c9fe217120d8b5e838a3777276",
+    "work/analysis/item-healing-regression-0.1.2511.json": "af1aaeb64307c6092db2bd0a89e8f58c96bb39af19d0ec1a8e234fdcb4fd487e",
+    "work/analysis/opening-gap-native-0.1.2519.json": "75a8c31ef8b38add94179f939ca34a822269b40d9722dbd4ffa9d25f68f5bb6e",
+    "work/analysis/opening-gap-capture-0.1.2523.json": "ec7ffaa9f6172f6aa943692551b5db398c321aa09a42c7166da4702ba58e870d",
+    "work/analysis/opening-gap-patches-0.1.2522.json": "a4d95bb5d4f379e07bb17040cc067f06a18806fe0d758cfc238883ea7a3d9737",
+    "docs/TEST_NOTES-0.1.2518.txt": "96d37da9f985afddfd0d979c5b4c5275c483cbff1c96954eb77d68aa2f3a1698",
+    "docs/TEST_NOTES-0.1.2509.txt": "2ef7640c174db809d0a87071589f07b28e5636677c9d815c562dd94adc30685b"
   },
   "hardware_tested": false,
   "full_playthrough_tested": false,
-  "complete_translation": false
+  "complete_translation": false,
+  "audio_backend": "Null",
+  "audio_volume": 0,
+  "original_movie_audio_unchanged": true,
+  "warning_ending_context_based": true
 }
