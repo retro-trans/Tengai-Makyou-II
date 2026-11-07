@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
-  "manifest_sha256": "3bed59d66683ac02f5894cf136f23ad14bacd8c80b4eaca5aefed419179f6955",
+  "manifest_sha256": "8aae30208e7e947eb4f51a7df2aef221b837deb002e8aeab208206a7308abf9b",
   "patches": [
     {
-      "patch": "Tengai-Makyou-II-English-v0.8.1.xdelta",
+      "patch": "Tengai-Makyou-II-English-v0.8.2.xdelta",
       "roundtrip_verified": true,
-      "target_sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee"
+      "target_sha256": "0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d"
     },
     {
-      "patch": "Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta",
+      "patch": "Tengai-Makyou-II-English-v0.8.1-to-v0.8.2.xdelta",
       "roundtrip_verified": true,
-      "target_sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee"
+      "target_sha256": "0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d"
     }
   ]
 }
