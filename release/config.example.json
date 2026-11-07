@@ -2,7 +2,7 @@
   "game_id": "tengai-makyou-ii",
   "game_name": "Tengai Makyou II: Manji Maru",
   "platform": "GameCube",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "source_commit": "REPLACE_WITH_FULL_40_CHARACTER_SOURCE_COMMIT",
   "package_ids": [
     {
@@ -13,24 +13,24 @@
   ],
   "patches": [
     {
-      "patch": "Tengai-Makyou-II-English-v0.8.1.xdelta",
+      "patch": "Tengai-Makyou-II-English-v0.8.2.xdelta",
       "edition": "japan",
       "language": "en",
       "source_version": "original",
       "source_format": "iso",
       "target_format": "iso",
       "source": "../private/original.iso",
-      "target": "../private/english-0.8.1.iso"
+      "target": "../private/english-0.8.2.iso"
     },
     {
-      "patch": "Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta",
+      "patch": "Tengai-Makyou-II-English-v0.8.1-to-v0.8.2.xdelta",
       "edition": "japan",
       "language": "en",
-      "source_version": "0.8.0",
+      "source_version": "0.8.1",
       "source_format": "iso",
       "target_format": "iso",
-      "source": "../private/english-0.8.0.iso",
-      "target": "../private/english-0.8.1.iso"
+      "source": "../private/english-0.8.1.iso",
+      "target": "../private/english-0.8.2.iso"
     }
   ]
 }

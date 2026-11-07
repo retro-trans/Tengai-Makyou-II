@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.2 — 2026-11-07
+
+- Remove wide spaces around colored names and rewrap the reported festival, inn, castle and village conversations, including Hermit Kasaiwa's castle explanation. Preserve wording, names, colors and original page turns.
+- Translate the shared field item-use action and actor/recipient names, including the Kanro Pill mouth action and nested healing result. Translate related no-effect actions, the Ear Pick of Love action, grip-only and smelly-hands outcomes.
+- Translate one-, two- and three-item postbattle reward messages with English item/equipment names. Resize a smaller reused battle result window before parsing the longer English text.
+- Package exact tested internal0.1.2552; retain the healing freeze fix, opening subtitles and earlier improvements. Original movies/audio/font are unchanged. Provide original-source and exact English0.8.1 upgrade patches for Automatic and Apply xdelta.
+- Hardware-sensitive: +1576 immutable executable bytes within the existing reservation (160 spare); reused battle-result backing can add2952 live bytes. MAP compression/FST offsets changed without decoded-room growth. Native tests are not physical-hardware validation; no new Dolphin/natural-scene/Card/full-playthrough claim. Detailed evidence and limits in docs/TESTING.md.
+
 ## 0.8.1 — 2026-11-07
 
 - Live Automatic original/English 0.8.0 routes and the unchanged public Windows 0.5.21 EXE with actual RVZ input/output pass complete hashes; historical catalog identities and old release assets retained.

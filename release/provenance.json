@@ -1,7 +1,7 @@
 {
-  "version": "0.8.1",
-  "internal_build": "0.1.2518",
-  "delivery_checkpoint": "0.1.2524",
+  "version": "0.8.2",
+  "internal_build": "0.1.2552",
+  "delivery_checkpoint": "0.1.2556",
   "game_bytes_changed_for_public_release": false,
   "source": {
     "bytes": 1459978240,
@@ -11,23 +11,24 @@
   },
   "target": {
     "bytes": 1459978240,
-    "sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee"
+    "sha256": "0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d"
   },
   "upgrade_source": {
-    "version": "0.8.0",
+    "version": "0.8.1",
     "bytes": 1459978240,
-    "sha256": "39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e"
+    "sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee"
   },
-  "dol_sha256": "dd84e0ff5acf8a3c274135729fcfe31f3f5323e22187fb5208b38bdbd4dfa281",
+  "dol_sha256": "58e76aeb2ae5dc85b46ba945e34268eb951cd2343feb493e6b07515658deeff9",
   "evidence": {
-    "work/analysis/tested-opening-gap-0.1.2518-2524.json": "78770b7af0f1b76da23c0ecba5f4fc7caf0a4e61ae3ec2b86423d3085b3cc02b",
-    "work/analysis/item-healing-native-0.1.2510.json": "4702040720f2c262359f7521d3118927cf4263c9fe217120d8b5e838a3777276",
-    "work/analysis/item-healing-regression-0.1.2511.json": "af1aaeb64307c6092db2bd0a89e8f58c96bb39af19d0ec1a8e234fdcb4fd487e",
-    "work/analysis/opening-gap-native-0.1.2519.json": "75a8c31ef8b38add94179f939ca34a822269b40d9722dbd4ffa9d25f68f5bb6e",
-    "work/analysis/opening-gap-capture-0.1.2523.json": "ec7ffaa9f6172f6aa943692551b5db398c321aa09a42c7166da4702ba58e870d",
-    "work/analysis/opening-gap-patches-0.1.2522.json": "a4d95bb5d4f379e07bb17040cc067f06a18806fe0d758cfc238883ea7a3d9737",
-    "docs/TEST_NOTES-0.1.2518.txt": "96d37da9f985afddfd0d979c5b4c5275c483cbff1c96954eb77d68aa2f3a1698",
-    "docs/TEST_NOTES-0.1.2509.txt": "2ef7640c174db809d0a87071589f07b28e5636677c9d815c562dd94adc30685b"
+    "work/analysis/tested-field-wrap-0.1.2529-2533.json": "02d70e3cb6e0724dc7f66dfcf02ebc3c7467836f9acddb0481b7b1c470c431ad",
+    "work/analysis/tested-item-gaps-0.1.2538-2544.json": "84d394f50024e1933e0b82cce25cab2d0174aa1a0983cc94ca8c01baa669832e",
+    "work/analysis/tested-no-effect-0.1.2545-2551.json": "0a3c71724baa5338bcefc94dad72459c5c9668a76458b868f6d20d520ab285f3",
+    "work/analysis/tested-castle-gap-0.1.2552-2556.json": "17067d0b1cb0e6f05ea62ef978505796fde7422a3a377cb4cb955c616e72463a",
+    "work/analysis/field-wrap-native-0.1.2530.json": "b7e46d4b618f52752a18b991ccd65337691f39266f03bf6ddff3ff59a4283fb4",
+    "work/analysis/item-gaps-native-0.1.2539.json": "3055088ce1f44f061e42a5039f513d16b30f165f3a75de3f0dce041c02b51cab",
+    "work/analysis/no-effect-native-0.1.2547.json": "8ecc4dc39fa5438325571b8fc5a8cc218a7cb4686f1ca7c880f0386bafa25e37",
+    "work/analysis/no-effect-proof-0.1.2550.json": "531a2f55bb426aa9a1c57e54caea928a5d2d232df0b6be8e972c62e0dba86953",
+    "work/analysis/castle-gap-native-0.1.2553.json": "6b9243c107380f457b27998e6c22aa024be975c36247583449f1b6200cee428d"
   },
   "hardware_tested": false,
   "full_playthrough_tested": false,
@@ -35,5 +36,5 @@
   "audio_backend": "Null",
   "audio_volume": 0,
   "original_movie_audio_unchanged": true,
-  "warning_ending_context_based": true
+  "new_Dolphin_or_natural_scene_test": false
 }
