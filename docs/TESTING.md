@@ -242,3 +242,12 @@ Retro Trans Tools 0.5.21 refreshed the published catalog, downloaded both patche
 The unchanged downloaded public Windows 0.5.21 EXE also passed actual original RVZ input, a live catalog refresh, live patch download and RVZ output. Independent extraction reproduced the exact 0.8.1 ISO hash; current recognition, source preservation and existing-output refusal passed. Private full-disc outputs were removed. The test used packaged Automatic entry points, not GUI clicking or a gameplay test. [RVZ proof](RVZ-0.8.1.json).
 
 Hosted package-registration/catalog validation: [successful scoped workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42294866155). No physical-hardware claims are added.
+
+
+## Live public installation verification — 2026-11-07
+
+Live Automatic with Retro Trans Tools 0.5.21 passed for the Japanese original, English v0.8.0 and English v0.8.1: fresh catalog/patch downloads, exact complete output hashes, current-version recognition, preserved inputs and overwrite refusal. v0.8.0 upgrades through v0.8.1 in two steps; Latest and explicit v0.8.2 select verified routes. Existing catalog identities and old release assets are preserved. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.2.json).
+
+The unchanged published Windows 0.5.21 EXE also passed real original RVZ input → Automatic → RVZ output → independent extraction to the exact v0.8.2 ISO. It uses isolated fresh app data/cache, preserves its source and refuses existing outputs. This executes packaged command entry points, not GUI clicking or game playback. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.2.json). [Scoped catalog workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42337820443).
+
+These installation checks add no physical hardware or game-playback validation. Initial uploaded installation/testing assets stay immutable; this repository and release body contain the completed live evidence.

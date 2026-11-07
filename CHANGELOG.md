@@ -2,6 +2,8 @@
 
 ## 0.8.2 — 2026-11-07
 
+- Live Automatic from original/English0.8.0/English0.8.1 and unchanged published Windows0.5.21 actual RVZ input/output pass complete hashes and source preservation. Scoped catalog refresh succeeds; old assets/identities retained.
+
 - Remove wide spaces around colored names and rewrap the reported festival, inn, castle and village conversations, including Hermit Kasaiwa's castle explanation. Preserve wording, names, colors and original page turns.
 - Translate the shared field item-use action and actor/recipient names, including the Kanro Pill mouth action and nested healing result. Translate related no-effect actions, the Ear Pick of Love action, grip-only and smelly-hands outcomes.
 - Translate one-, two- and three-item postbattle reward messages with English item/equipment names. Resize a smaller reused battle result window before parsing the longer English text.
