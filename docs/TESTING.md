@@ -632,3 +632,9 @@ Live Automatic with Retro Trans Tools 0.5.21 passed for the Japanese original, E
 The unchanged published Windows 0.5.21 EXE also passed real original RVZ input → Automatic → RVZ output → independent extraction to the exact v0.8.2 ISO. It uses isolated fresh app data/cache, preserves its source and refuses existing outputs. This executes packaged command entry points, not GUI clicking or game playback. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.2.json). [Scoped catalog workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42337820443).
 
 These installation checks add no physical hardware or game-playback validation. Initial uploaded installation/testing assets stay immutable; this repository and release body contain the completed live evidence.
+
+## Live public installation verification — 2026-11-13
+
+Live **Retro Trans Tools 0.5.23 Automatic** passed from the Japanese original and public English **v0.8.0, v0.8.1 and v0.8.2**. Fresh catalog and patch downloads produced the exact v0.8.3 ISO, recognized it as current, preserved all inputs and rejected overwriting existing files. Explicit v0.8.3 and Latest routes select the correct updates, and Next version only retains the original version sequence. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.3.json).
+
+The published **Windows v0.5.23 app** passed original **RVZ → Automatic → RVZ** with a fresh app cache and live downloads. Independent extraction reproduced the complete v0.8.3 ISO hash. These are installation tests. Game playback and physical hardware were not exercised. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.3.json). [Catalog refresh](https://github.com/retro-trans/retro-trans-tools/actions/runs/43404204018).

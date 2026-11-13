@@ -24,7 +24,7 @@ Manual **Apply xdelta** uses `Tengai-Makyou-II-English-v0.8.3.xdelta` for the Ja
 | English v0.8.2 upgrade source | 1,459,978,240 | `0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d` |
 | English v0.8.3 output | 1,459,978,240 | `777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac` |
 
-Public Automatic and Windows RVZ installation checks are recorded after publication.
+Automatic from the Japanese original and public English v0.8.0/v0.8.1/v0.8.2, plus real RVZ input and output in the published Windows v0.5.23 app, passed complete output verification. [Automatic evidence](docs/AUTOMATIC-0.8.3.json) · [RVZ evidence](docs/RVZ-0.8.3.json).
 
 ## Included work
 

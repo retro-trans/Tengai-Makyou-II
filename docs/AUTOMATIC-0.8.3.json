@@ -1,0 +1,162 @@
+{
+  "version": "0.8.3",
+  "app_version": "0.5.23",
+  "checks": "passed",
+  "cases": [
+    {
+      "source_version": "original",
+      "source_sha256": "0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470",
+      "routes": {
+        "Latest": {
+          "target": "0.8.3",
+          "steps": 1,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.3.xdelta"
+          ]
+        },
+        "0.8.3": {
+          "target": "0.8.3",
+          "steps": 1,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.3.xdelta"
+          ]
+        },
+        "Next version only": {
+          "target": "0.8.0",
+          "steps": 1,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.0.xdelta"
+          ]
+        }
+      },
+      "output_sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac",
+      "recognized_current": true,
+      "source_preserved": true,
+      "overwrite_refused": {
+        "input": "Choose a different output file to preserve your inputs.",
+        "existing_output": "The output already exists. Choose a new filename."
+      },
+      "temporary_output_removed": true
+    },
+    {
+      "source_version": "0.8.0",
+      "source_sha256": "39a881525956fbf977b25c691c7e94cef57573bb1f927d5628c37295f898891e",
+      "routes": {
+        "Latest": {
+          "target": "0.8.3",
+          "steps": 3,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta",
+            "Tengai-Makyou-II-English-v0.8.1-to-v0.8.2.xdelta",
+            "Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta"
+          ]
+        },
+        "0.8.3": {
+          "target": "0.8.3",
+          "steps": 3,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta",
+            "Tengai-Makyou-II-English-v0.8.1-to-v0.8.2.xdelta",
+            "Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta"
+          ]
+        },
+        "Next version only": {
+          "target": "0.8.1",
+          "steps": 1,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.0-to-v0.8.1.xdelta"
+          ]
+        }
+      },
+      "output_sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac",
+      "recognized_current": true,
+      "source_preserved": true,
+      "overwrite_refused": {
+        "input": "Choose a different output file to preserve your inputs.",
+        "existing_output": "The output already exists. Choose a new filename."
+      },
+      "temporary_output_removed": true
+    },
+    {
+      "source_version": "0.8.1",
+      "source_sha256": "9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee",
+      "routes": {
+        "Latest": {
+          "target": "0.8.3",
+          "steps": 2,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.1-to-v0.8.2.xdelta",
+            "Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta"
+          ]
+        },
+        "0.8.3": {
+          "target": "0.8.3",
+          "steps": 2,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.1-to-v0.8.2.xdelta",
+            "Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta"
+          ]
+        },
+        "Next version only": {
+          "target": "0.8.2",
+          "steps": 1,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.1-to-v0.8.2.xdelta"
+          ]
+        }
+      },
+      "output_sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac",
+      "recognized_current": true,
+      "source_preserved": true,
+      "overwrite_refused": {
+        "input": "Choose a different output file to preserve your inputs.",
+        "existing_output": "The output already exists. Choose a new filename."
+      },
+      "temporary_output_removed": true
+    },
+    {
+      "source_version": "0.8.2",
+      "source_sha256": "0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d",
+      "routes": {
+        "Latest": {
+          "target": "0.8.3",
+          "steps": 1,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta"
+          ]
+        },
+        "0.8.3": {
+          "target": "0.8.3",
+          "steps": 1,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta"
+          ]
+        },
+        "Next version only": {
+          "target": "0.8.3",
+          "steps": 1,
+          "patches": [
+            "Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta"
+          ]
+        }
+      },
+      "output_sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac",
+      "recognized_current": true,
+      "source_preserved": true,
+      "overwrite_refused": {
+        "input": "Choose a different output file to preserve your inputs.",
+        "existing_output": "The output already exists. Choose a new filename."
+      },
+      "temporary_output_removed": true
+    }
+  ],
+  "output_sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac",
+  "both_live_downloads_verified": true,
+  "live_public_catalog": true,
+  "initially_empty_cache": true,
+  "existing_catalog_records_preserved": true,
+  "game_audio_used": false,
+  "game_emulator_launched": false,
+  "hardware_tested": false,
+  "backend_commit": "cbf7858899859a71abd300745a19446b1facd405"
+}
