@@ -9,7 +9,7 @@ import tempfile
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', type=Path, required=True)
-    parser.add_argument('--previous', type=Path, required=True, help='Exact public English0.8.1 ISO')
+    parser.add_argument('--previous', type=Path, required=True, help='Exact public English0.8.2 ISO')
     parser.add_argument('--target', type=Path, required=True)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--library', type=Path, required=True)
@@ -35,7 +35,7 @@ def main():
         config.write_text(json.dumps(template, indent=2)+'\n', encoding='utf-8')
         build_release(config, args.out, library=library)
     validate_directory(args.out)
-    print('Verified 0.8.2 patches and canonical release metadata:', args.out)
+    print('Verified 0.8.3 patches and canonical release metadata:', args.out)
 
 if __name__ == '__main__':
     main()

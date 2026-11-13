@@ -1,53 +1,50 @@
 # Tengai Makyou II: Manji Maru — English patch
 
-An English translation patch for the Japanese Nintendo GameCube release of **Tengai Makyou II: Manji Maru**. Maintained by [binhlt0402](https://github.com/binhlt0402) at [retro-trans](https://github.com/retro-trans).
+English translation of the Japanese Nintendo GameCube release, maintained by **binhlt0402 / retro-trans**.
 
-**[Download version 0.8.2](https://github.com/retro-trans/Tengai-Makyou-II/releases/tag/v0.8.2)** · [Changes](CHANGELOG.md) · [Testing and known limits](docs/TESTING.md)
+**[Download v0.8.3](https://github.com/retro-trans/Tengai-Makyou-II/releases/tag/v0.8.3)** · [Changes](CHANGELOG.md) · [Testing notes](docs/TESTING.md)
 
-This is an in-progress translation. Japanese text may remain, and a complete playthrough has not been verified. The version number is a release identifier, not a measured translation percentage.
+The translation is in progress. This release packages tested internal build **0.1.2615**, including English password entry and the cumulative travel, battle, subtitle, dialogue and layout fixes since v0.8.2.
 
-## Apply with Retro Trans Tools
+## Apply
 
 1. Get the current [Retro Trans Tools Windows release](https://github.com/retro-trans/retro-trans-tools/releases/latest).
-2. Open **Automatic**, then **Refresh catalog**.
-3. Browse to your original Japanese GameCube ISO or exact English v0.8.1 image. Select **0.8.2** or **Latest**.
-4. Choose a new output ISO filename and click **Patch**. The app downloads the patch and verifies both the original and the completed ISO.
-5. Cold boot the patched image and load an in-game save. Older save states can retain old code or text.
+2. Open **Automatic** and **Refresh catalog**.
+3. Select your original Japanese or published English image and choose **0.8.3 / Latest**.
+4. Choose a new ISO or RVZ output and patch with verification enabled.
+5. Cold boot the new image and load an in-game save.
 
-Use an image extracted from your own original disc. The patch applies to the exact original below, regardless of filename. Other editions and modified images are unsupported, except the exact English v0.8.1 image supported by the upgrade patch.
+Compatible RVZ input and output are supported on Windows. Approve extraction when prompted. The bundled converter requires Windows 10 1903 or later, x64, and the [Microsoft Visual C++ v14 x64 runtime](https://aka.ms/vc14/vc_redist.x64.exe).
 
-**RVZ:** [Retro Trans Tools 0.5.21 for Windows](https://github.com/retro-trans/retro-trans-tools/releases/tag/v0.5.21) supports RVZ directly in Automatic: approve ISO extraction, select the release, choose **RVZ** output or **Original format** for ISO, then patch. Your original RVZ and extracted ISO are retained. RVZ output is verified against the complete patched ISO. The converter is bundled. Requires Windows 10 1903 or later, x64, and the current [Microsoft Visual C++ v14 x64 runtime](https://aka.ms/vc14/vc_redist.x64.exe).
-
-With older **0.5.20** installations, update or convert RVZ to ISO in Dolphin before patching; optionally convert the patched ISO back to RVZ afterward. Mac and Android downloads are unchanged; direct RVZ conversion is Windows-only. Renaming does not convert formats. The same patch and ISO hashes apply to both workflows; RVZ compression hashes are not disc identities. [RVZ test evidence](docs/RVZ-0.8.1.json).
+Manual **Apply xdelta** uses `Tengai-Makyou-II-English-v0.8.3.xdelta` for the Japanese original, or `Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta` for the exact public English v0.8.2 image.
 
 | Image | Bytes | SHA-256 |
 | --- | ---: | --- |
-| Original Japanese ISO | 1,459,978,240 | `0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470` |
-| English 0.8.2 ISO | 1,459,978,240 | `0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d` |
+| Japanese GT2J18 revision 0 | 1,459,978,240 | `0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470` |
+| English v0.8.2 upgrade source | 1,459,978,240 | `0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d` |
+| English v0.8.3 output | 1,459,978,240 | `777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac` |
 
-For manual installation, download the `.xdelta` asset and use **Apply xdelta** with a matching input and a new output filename. Use `Tengai-Makyou-II-English-v0.8.2.xdelta` for the Japanese original, or `Tengai-Makyou-II-English-v0.8.1-to-v0.8.2.xdelta` for exact English v0.8.1 (SHA-256 `9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee`). `BUILD-MANIFEST.json`, `VALIDATION.json`, and `SHA256SUMS.txt` provide the exact identities and patch verification. No complete game image is distributed.
-
-Automatic from the Japanese original and public English v0.8.0/v0.8.1, plus real RVZ input/output in the published Windows 0.5.21 app, passed complete output verification. [Automatic evidence](docs/AUTOMATIC-0.8.2.json) · [RVZ evidence](docs/RVZ-0.8.2.json).
+Public Automatic and Windows RVZ installation checks are recorded after publication.
 
 ## Included work
 
-- UI and navigation improvements for English text: roomier labels and descriptions, two-column lists, clearer actions, and more consistent navigation than the original menus.
-- New **Options → Random Encounters** setting: **None / Less / Default / More**. Adjust random walking encounters while retaining bosses and scripted battles.
-- English dialogue, menus, item and equipment descriptions, scrolls, Arts, battle messages, and movie subtitles developed during the project; translation remains incomplete.
-- Normal-resolution **Balsamiq Sans Regular** lettering and clearer menu labels. All Arts command categories use **Arts**.
-- Item, scroll, and equipment flows select an action, a user, and an item. Give / Exchange then selects a recipient, including the giver, and a destination slot. The selected user's highlight remains visible while choosing an item.
-- Clearer **Direct Control / AI Control** labels for the original game's existing manual/automatic Strategy setting; no new party-control functionality.
-- Eight English castle title banners, preserving the original decorative frames and colors. Opening movie files remain original; movies have not been reencoded.
-- Complete English field-use refusal messages such as “Ice Blade cannot be used outside battle.”
 
-## Status and feedback
+- **UI/navigation changes for English text:** roomier labels and descriptions, two-column lists, clearer action buttons, full character names and improved placement. Consistent action → user → item flows; Give / Exchange adds a recipient and destination slot, with clearer Back navigation and a persistent selected-user highlight.
+- **Added Random Encounters option:** **Options → Random Encounters → None / Less / Default / More**, adjusting random walking encounters while retaining bosses and scripted battles.
+- English dialogue, menus, item/equipment help, Scroll/Arts descriptions, battle messages, subtitles and field-use messages developed so far; further translation/proofreading remains.
+- Normal-resolution Balsamiq Sans Regular, consistent **Arts** labels and eight English castle banners preserving the original frames/colors.
+- **Direct Control / AI Control** clarifies the original game's existing Strategy control setting; we did not add party-control functionality.
 
-0.8.2 packages the verified internal checkpoint **0.1.2552**, without changing its game bytes. This release repairs dialogue spacing/wrapping and translates more item actions, no-effect results and postbattle rewards. Previous healing/opening fixes remain installed. Native checks and patch round trips pass; no new natural-scene Dolphin replay is claimed. **Physical GameCube operation, a full playthrough, natural transition timing, and actual memory-card write/restart/reload are unverified.** Read [testing notes](docs/TESTING.md) for memory and runtime risks.
+## Testing and feedback
 
-Report problems through [Issues](https://github.com/retro-trans/Tengai-Makyou-II/issues). Include the patch version, location, steps, and a screenshot where possible. Do not upload game images or original game files.
+This is an in-progress translation. Japanese text may remain. The new password and reward code, UI allocations and compressed room changes have passed native checks, but natural access to these scenes in Dolphin and physical GameCube play remain untested. A full playthrough, transition timing under natural memory pressure and memory-card write/restart/reload have not been validated. Earlier opening-warning source uncertainty remains documented.
+
+Hardware-sensitive changes since v0.8.2 include rewritten password editing/navigation/comparison, English answer records and a new input-buffer format inside the original 30-byte buffer. Password prompt backing requests 1,968 extra bytes and the reward refusal requests 2,880 extra bytes before allocator rounding. Travel menus can add up to 4,224 live bytes. Scoped display/parser branches and subtitle records change, and compressed MAP/header/FST metadata changes. These can affect heap pressure, fragmentation, timing and console execution. Native checks and patch verification do not establish real-hardware compatibility. Detailed evidence and limits appear in the testing notes.
+
+Report issues with the patch version, location, steps and a screenshot through [Issues](https://github.com/retro-trans/Tengai-Makyou-II/issues). Read the [release notes](docs/releases/v0.8.3.md) and [testing details](docs/TESTING.md).
 
 ## Repository and credits
 
-This repository contains release documentation, the public packaging recipe, and binary provenance. It is not a complete clean-room rebuild of the translation from source. The release recipe requires a local original ISO and the verified translated checkpoint; neither is included.
+The repository provides release documentation, a packaging recipe and provenance. Building the package requires local original and translated ISO inputs.
 
-Translation maintenance and release: **binhlt0402 / retro-trans**. English font: **Balsamiq Sans Regular**, used under the [SIL Open Font License](docs/BalsamiqSans-OFL.txt). Automatic patching and verified release packaging: [Retro Trans Tools](https://github.com/retro-trans/retro-trans-tools). Original game, characters, artwork, and media belong to their respective rights holders. This is an unofficial fan translation.
+Translation maintenance by **binhlt0402 / retro-trans**. English font is **Balsamiq Sans Regular**, under the included [SIL Open Font License](docs/BalsamiqSans-OFL.txt). Translation is LLM-assisted with accuracy, editorial and proofreading review. Patching uses [Retro Trans Tools](https://github.com/retro-trans/retro-trans-tools). Original assets belong to their respective rights holders. This is an unofficial fan translation.

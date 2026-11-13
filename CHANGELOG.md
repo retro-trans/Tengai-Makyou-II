@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.3 — 2026-11-13
+
+- Add an English A-Z password keyboard for both puzzles, with Space, Delete, Left, Right and Done. Support 20 characters and accept answers regardless of capitalization or spaces. Translate all ten prompt variants and check the corresponding clues.
+- Translate the full-party reward refusal and its shared Yes label, plus all battle ally-target names and field recipient names/free-slot counts.
+- Complete and widen the travel destination picker for full English names. Translate related travel, wind, escape and location-refusal messages.
+- Correct recurring dialogue gaps around highlighted names and other reported prose, and translate the reported grandmother and ninja conversations.
+- Keep both lines of equipment descriptions above the shop border and check long descriptions, scrolling, purchases, sales and reopening.
+- Add subtitles to the orchid finishing clips and Kikugoro's retreat voice.
+
+Hardware-sensitive code, buffer and allocation changes and verification limits are recorded in docs/TESTING.md.
+
 ## 0.8.2 — 2026-11-07
 
 - Live Automatic from original/English0.8.0/English0.8.1 and unchanged published Windows0.5.21 actual RVZ input/output pass complete hashes and source preservation. Scoped catalog refresh succeeds; old assets/identities retained.
