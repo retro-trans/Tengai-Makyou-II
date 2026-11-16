@@ -1,640 +1,580 @@
-# Testing and limitations — v0.8.3
+# Testing and limitations — v0.8.4
 
-This is an in-progress translation. Japanese text may remain. The new password and reward code, UI allocations and compressed room changes have passed native checks, but natural access to these scenes in Dolphin and physical GameCube play remain untested. A full playthrough, transition timing under natural memory pressure and memory-card write/restart/reload have not been validated. Earlier opening-warning source uncertainty remains documented.
+Translation is still in progress; Japanese text and errors may remain. The updated game code and larger UI buffers passed silent native checks, but no new Dolphin playthrough, natural scene-transition test, physical GameCube test or real memory-card write/restart/reload test occurred. Installation verification does not establish game or real-hardware compatibility.
 
-Hardware-sensitive changes since v0.8.2 include rewritten password editing/navigation/comparison, English answer records and a new input-buffer format inside the original 30-byte buffer. Password prompt backing requests 1,968 extra bytes and the reward refusal requests 2,880 extra bytes before allocator rounding. Travel menus can add up to 4,224 live bytes. Scoped display/parser branches and subtitle records change, and compressed MAP/header/FST metadata changes. These can affect heap pressure, fragmentation, timing and console execution. Native checks and patch verification do not establish real-hardware compatibility. Detailed evidence and limits appear in the testing notes.
+Hardware-sensitive changes since v0.8.3 include equipment/name lookup branches, item-message expansion and constructor hooks, wider province/Lottery/newspaper/Commodity buffers, new display pointers and compressed room/header/FST updates. The new newspaper backing alone adds 27,672 live bytes; Commodity table backing adds 8,208 bytes, parent prompt backing can add 5,760 bytes, and each updated Sell child adds 2,688 bytes. The final scene space is 1,044,320 bytes. Captured allocation replay with the complete-model budget and 256 KiB reserve leaves 351,232 bytes at peak, above the documented 300,000 test margin but below the older 400,000 margin. Full gameplay peaks, fragmentation, timing and console execution remain unverified. Detailed evidence and limits are in the testing notes.
 
-Exact alias of internal build 0.1.2615. Native previews use actual glyph positions on schematic backgrounds.
+The following retained category notes describe evidence inherited by this exact release. Historical filenames and source evidence are unchanged.
 
-## Internal build 0.1.2615
-
-Tengai Makyou II English test 0.1.2615
-
-Password entry
-Both password modes use an A-Z keyboard with Space, Delete, Left, Right and
-Done. Input has 20 characters, with a separate end caret. Comparison ignores
-spaces and capitalization. Done and the existing finish shortcut submit the
-answer. Back deletes the preceding character.
-
-The tomb clues in maps 110 and 291 and the Kikugoro clues in maps 71 and 220
-match these spellings. All ten password prompt variants are English.
-
-Related screenshot fixes
-The separate battle reward refusal now reads, across two lines,
-But your party cannot carry any more.
-Give up this reward?
-Its shared Yes label also serves the inventory organize confirmation.
-Both confirmation openings and the original decision indices were checked.
-The two Kii Province/Wakayama Castle dialogue rows already have normalized
-spacing in this build. All 14 existing treasure/find/obtain/bag-full/discard
-and detection streams and their dispatch pointers remain correct in the
-current executable.
-
-Verification
-Native checks execute the real BB opcode dispatcher, operand reader, wrapper,
-window constructors, input edits, comparison, result variable and cleanup.
-The BB instruction and surrounding VM context are fixtures. Ten prompt
-scenarios exercise all 31 keys in four directions, and 15 answer cases cover
-both modes, spaces, mixed case, wrong mode, empty/short/long answers and
-malformed input. Editing checks cover caret bounds and all 20 visible cells.
-Reward checks compare six old/new prompt decisions and the separate organize
-opening. No reaches the original inventory-screen handoff. Six installed
-field rows are read back from the current MAP. Audio endpoints were silent.
-The preview uses actual native glyph positions on schematic panels.
-Both patches reproduced the full ISO through Retro Trans Tools 0.5.21.
-
-Hardware-sensitive changes
-Password editing, navigation, rendering and answer comparison are rewritten
-within their original code region. The original kana-grid and prompt data
-area now holds English key labels, prompts and the reward refusal. The two
-answer records now hold English strings. Input uses 20 bytes and a terminator
-inside the original 30-byte buffer. The main password glyph backing grows
-from 23x2 to 64x2, requesting 1968 extra bytes before allocator rounding.
-The grid backing has the original 5760-byte size, reshaped from 30x8 to 48x5.
-The reward refusal resizes its cleared real bottom window from 24x3 to 64x3,
-requesting 2880 extra bytes before rounding, and its pointer load branches
-through a helper within the rewritten code region.
-
-These code, buffer-format and allocation changes can affect console play.
-The native tests model fade completion and peripheral drawing/audio services.
-They do not validate heap pressure in a natural map scene, GPU rendering,
-the event interpreter's later resume, or the No-path inventory screen after
-the handoff. Natural password entry in Dolphin and physical hardware remain
-untested. DOL size and static memory reservation are identical to 0.1.2610,
-the strict inverse restores that DOL, and every other disc byte matches it.
-
-Start the new ISO and load an in-game save.
+## Equipment names
 
 
-## Internal build 0.1.2610
+Yamainu Helmet and related equipment names
+Treasure acquisition now reads Found Yamainu Helmet! The English name remains
+visible after Equip, with the original DEF12. The same correction covers all
+13 names in the later equipment-name bank. Eight older direct lookups now use
+the complete357-name equipment/item bank: the legacy found notice, scoped
+treasure insert, and all six inserts in one/two/three battle reward formats.
+The69-scroll name map remains separate and unchanged.
 
-Tengai Makyou II English test 0.1.2610
+The field list/equipped name wrapper now distinguishes the original label bank
+from extension markers20000..20012. Previously the extension marker indexed
+past the original bank, explaining the blank label and a native unmapped read
+in the reproduction. The name, source strings, game IDs, eligibility, stats,
+equipment records, inventory logic and translations are unchanged.
 
-The battle ally-target popups now use Manjimaru, Kabuki, Gokuraku and Kinu.
-The source names were shared by two native row writers and five openings.
-Both the regular party list and the filtered target list use the same
-English names as the battle HUD. The wider selection bar accommodates the
-full names inside the original frame. The adjacent Allies / Enemy Side
-picker already displays in English and was exercised as a regression check.
-
-Silent native checks covered seven paired scenarios across the five
-openings, including two, three and four party members, reordered eligible
-targets, disabled colors, directional input, and closing and reopening.
-The two-person item case verified that selecting Kabuki produces the same
-target mask and Confirm and Back states as before. The preview shows native
-glyph positions on a schematic panel. Both xdelta patches reproduced the
-
-Hardware-sensitive changes
-The two scoped name row writers now look up existing English strings.
-Their glyph buffers increase from five to ten columns. That requests
-360 extra bytes for a three-row popup or 480 for a four-row popup, before
-allocator rounding. The original frame and existing font assets are
-reused. The native tests exercised allocations and frees, with modeled
-battle setup and fade timing. The DOL size and static RAM layout are
-identical, the strict inverse restores the prior DOL, and all disc bytes
-outside the DOL match 0.1.2605. The code and heap changes could affect
-console play. Full battle playback in Dolphin and physical hardware remain
-untested.
-
-Start the new ISO and load an in-game save.
-
-
-## Internal build 0.1.2605
-
-Tengai Makyou II English test 0.1.2605
-
-Field travel and labyrinth escape message audit
-- Wind and Storm Talismans share a separate item-result path. Translate
-  both pages and preserve the selected actor, item and solo/party subject.
-- Translate both Return Stone pages and the Receding Wave escape result.
-- Translate the named travel-scroll location refusal in its original
-  23-by-3 window. Item location refusals already display in English.
-- Recheck the previously installed Tenjin and Feather Robe wind results,
-  and the Wind Talisman and Feather Robe village destination flows.
-
-Native verification covers 42 paired old/new cases for travel items,
-Receding Wave and the named refusal, plus 12 existing wind-result cases
-and eight alternate refusal or destination paths. It verifies the real
-result callbacks, normal and Confirm reveal, result page turns, English
-names, bounds, actor data and allocation cleanup. The short refusal
-wording fits the original backing even for Receding Wave. The preview
-uses native glyph positions on schematic panels. Both patches reproduced
-the full ISO in Retro Trans Tools 0.5.21 Apply xdelta.
-
-Hardware-sensitive changes
-Four message pointers and five parser branches change. The branches
-qualify the new stream ranges and reuse the existing name and parser
-paths. The strings and small branches occupy checked fixed wrapper padding
-at 0x80290D10 and 0x80290E0C, following existing exits. The strict inverse
-restores 0.1.2600. DOL size, window backing, arena and font size stay the
-same. All disc bytes outside the DOL match 0.1.2600. The changed branches
-and stream pointers can affect console execution. Native tests used silent
-audio endpoints and modeled the acknowledgement of the previous scroll
-prompt. The actual map transfer, Dolphin gameplay and physical hardware
-remain untested.
-
-The standing category-wide review rule is recorded in AGENTS.md.
-Start the new image and load an in-game save.
-
-
-## Internal build 0.1.2600
-
-Tengai Makyou II English test 0.1.2600
-
-The field result reads “Manjimaru and the others melted into the wind!”
-The solo version reads “Manjimaru melted into the wind!” Both scroll IDs
-66 and 67 use the same result callback. The active game party scan chooses
-the original solo or party branch.
-
-Twelve silent native cases used the real 64-by-3 constructor, field result
-callback and window updater. Cases covered both scroll IDs with one, two
-and four active characters, normal reveal, early Confirm to complete the
-line and confirmation of the completed result. Both variants fit on one
-line. Matched prior party data, scroll cost and allocation cleanup. The
-fixture starts the result after modeling acknowledgement of the preceding
-scroll-use prompt. The preview shows native glyphs over a schematic panel.
-
-Hardware-sensitive changes
-Four existing pointer-load instructions now read English strings from
-79 bytes in the original wrapper slot's checked padding, past the
-existing shop helper's return and before the next routine. The original
-source strings and lookup records stay intact. The pointer changes and use
-of padding can affect console execution. Evidence covers a reference scan,
-inverse DOL comparison, native dispatch, reveal, bounds, cleanup and both
-patch routes. The backing, font, arena and DOL sizes stay the same. All disc
-bytes outside the DOL match 0.1.2595. The native test ends after confirming
-the result. Dolphin travel, map transition and physical hardware play
-remain untested.
-
-Both patches rebuilt the full ISO in Retro Trans Tools 0.5.21 Apply xdelta.
-Start the new ISO and load an in-game save.
-
-
-## Internal build 0.1.2595
-
-Tengai Makyou II English test 0.1.2595
-
-The field event “Who will carry it?” popup uses Manjimaru, Kabuki, Gokuraku,
-and Kinu, with Free followed by the original count. This uses the same names
-and terminology as the separate shop popup. The field selector spans both
-columns, with the original 480 by 192 frame and 18 by 6 backing.
-
-Native callback fixtures compared the prior and new builds with the same
-inventory data. The pictured 1 and 3 counts, all four party IDs, zero,
-two-digit scroll counts, native movement and confirmation passed. Actual
-confirmation rejected a full recipient and added one item, weapon or scroll
-to the selected eligible recipient. General Store entry, scrolling, Buy and
-Sell, funds, Back, Exit and four same-pool reopens passed in a separate check.
-The proof shows native glyph positions on a schematic background.
-
-Hardware-sensitive changes
-Five instructions in the field event change the display-name pointer and
-horizontal positions. A 12-byte field-only format record keeps the existing
-two-digit formatter command and the original nine-byte stack copy. These
-changes touch the selector and native parser input and can affect hardware
-behavior. The DOL size, arena, font and allocation sizes stay the same. All
-disc bytes outside the DOL match 0.1.2590. The native fixture modeled two
-paired-single save and restore instructions and completed fade timing, and
-muted all audio endpoints. Natural event entry in Dolphin and real hardware
-play were not exercised.
-
-Retro Trans Tools 0.5.21 Apply xdelta reproduced the complete ISO from the
-clean Japanese GT2J18 rev 0 image and from the exact public English v0.8.2
-image. Start the new ISO and load an in-game save.
-
-
-## Internal build 0.1.2590
-
-Tengai Makyou II English test 0.1.2590
-
-Field dialogue now uses one ordinary English space for isolated full-width
-prose separators, including across color and empty reading tags. This corrects
-Ikoma Pass, Naniwa Province and four bronze bells along with other instances.
-The installed scan corrected 70 gaps in 50 entries
-and kept deliberate indentation, aligned puzzle text, color, wording, voice
-controls, and existing line and page breaks. The English field compiler now
-applies the same rule to future builds. See work/build/0.1.2590/prose-shop/spacing-review.json.
-
-Equipment descriptions use 14px normal Balsamiq while a shop is active.
-Kogarashi shows both lines in Buy and Sell. The Buy lines sit at y=76 and 90,
-with a bottom of 104 inside the panel's inner edge at 108. Sell lines start
-at y=72 and 90. The underlying 48 by 5 allocation is unchanged.
-
-Silent native checks read 9635 ordinary entries and checked
-9635 event operands and all 31 typed
-room bindings. The original decoder reproduced all 31
-changed rooms. Both reported dialogue examples agree in fast, slow and
-confirm-to-reveal modes. Actual shop entry, directional scrolling, all
-237 equipment descriptions, purchase and sale confirmations,
-funds, Back, Exit and four same-pool reopens passed. Sampled Field and Storage
-gear views exactly matched the previous build. Layout proofs use captured
-native glyph positions and a schematic background.
-The Equipment Shop also completed a 4,400-ryo Kogarashi purchase, including
-the follow-up equip prompt, and credited 2,200 ryo on its confirmed sale.
+Category audit and verification
+All237 native gear IDs were displayed through actual equipment-choice
+constructors and the native equipped-row producer, including complete glyph
+and bounds checks. Display fixtures deliberately seed IDs regardless of the
+chosen actor's eligibility. Separately, all13 extension items were equipped
+through real native menu confirmation/eligibility and their names checked on
+reopening. Ordinary items were also removed through native entry0. Cursed
+items preserve their original flag and native removal refusal; the fixture
+models announcement dismissal for teardown, rather than executing its later
+game-loop resume.
+Equipment IDs, flags and derived-stat updates exactly matched public0.8.3
+under the same native confirmation inputs and party records.
+Both legacy357 and scoped426 equipment/item/scroll substitutions passed.
+All13 names passed the related treasure/find/obtain/give-up/discard variants
+in full, line and character reveal modes, and real battle result production
+with one/two/three rewards. Alternate ordinary/storage/overview label markers
+and three native colors were checked for all13 names. The451 older wrapped
+labels and the Yamainu shop highlight/quote/No path also passed.
+Native audio endpoints were intercepted and silent. The preview composites
+the captured native glyphs/coordinates onto schematic panels; it is not a
+Dolphin screenshot. Both original-source and publicv0.8.3 upgrade patches
+reproduced the complete ISO through Retro Trans Tools0.5.23 Apply xdelta.
 
 Hardware-sensitive changes and limits
-The MAP has 96 additional compressed bytes in verified unused disc padding.
-Its file size and the cached headers change. All disc offsets and unrelated
-assets are byte-exact. Decoded rooms keep their allocation sizes and caller
-operands. The DOL adds a shop callback check in 44
-bytes of the original description wrapper's proven free slot, reached from one
-new branch. It reads the active parent to select font size and leaves font
-assets, heap reservations and backing sizes alone. Compressed MAP layout,
-disc length metadata and the code branch may affect console execution.
-Evidence covers native decoding, callback and menu flows, glyph bounds,
-unchanged adjacent paths, and full patch application. Dolphin gameplay,
-natural scene replay and real hardware were not tested.
-The superseded 0.1.2586 prototype applied 14px in the shared wrapper without
-the shop callback check. Field and Storage comparison caught the side effect.
-The delivered build passed the paired check for those paths.
+Eight pointer/count instruction groups change from344 to357-name lookup.
+The wrapped-name code calls a bounded two-bank resolver placed in140 bytes
+of an already bypassed secondary bitmap scan. The unconditional fallback
+before that retired body remains unchanged; a direct-branch audit found no
+outside entries into the reclaimed body. Saved registers, stack and existing
+rendering behavior pass native ABI/queue/cleanup checks. These code/branch
+changes can affect console execution and rendering. No DOL size, arena,
+static memory reservation, heap allocation, backing dimensions, font or
+other disc byte changes. The strict inverse restores0.1.2615 exactly.
+Native tests model peripheral GPU/audio services and fade completion. They
+do not validate natural chest navigation, the curse announcement's later
+game-loop resume, scene memory pressure, a complete
+playthrough, Dolphin's actual GPU output or physical GameCube execution.
+No new Dolphin session or real-hardware test was performed.
 
-Both patches reproduce the complete ISO in Retro Trans Tools 0.5.21 using
-Apply xdelta. The original-source patch is for clean Japanese GT2J18 rev 0.
-The upgrade patch is for the exact public English v0.8.2 image. Start the new
-image and use an in-game save so the game loads the new executable and data.
+Start the new ISO and load an in-game save.
+ISO work/output/Tengai-Makyou-II-English-0.1.2620-test.iso
+SHA-256 017e7757b572260485067c6de6ea9c63f67f400c8221cd504c0cc9aa0deb903d
+
+## Province destinations and item actions
 
 
-## Internal build 0.1.2579
+Province destinations
+All17 province names are English in both native province-record tables.
+This includes Hida, Owari, Ise and Kii in the screenshot. The three province
+grid paths use a wider16x9 backing at20px, with two8-cell columns and matching
+native highlight geometry. The frame is368x228 at136,120. The original
+17 destination indices, visited checks, flags and coordinates are unchanged.
+The separate village picker retains full English village/town names.
 
-Tengai Makyou II — English test0.1.2579 / checkpoint0.1.2585 — 2026-11-07
+Field item actions
+The missed Transformation Seal action now says the actor considered trying
+it but decided against it. The related drawing action says the actor looked
+at the item and it shows a poorly drawn boat. Actor/item names and every
+original line/page/wait control are retained. Native kind5 and kind0 items
+were audited through actual Item Use, including otherwise uncommon items
+which share the original fallback action. No item effect is invented.
 
-Requested subtitle
-Install Kikugoro's omitted field farewell: "See you around, Fire Clan!" The existing52-cue movie27 conversation already has subtitles; this original event plays a separate voice after that movie ends. Original MAP063/room0 issues opcode63 voice346, waits210frames and runs the retreat motion. Native handler80071C90 ->8006B308 subtracts290 ->80085780 index56; filename table801D4C28[56] identifies Voice/NA012D.hps. Both unprompted no-VAD ASR models agree on the farewell and Fire Clan group vocative. One utterance newly translated, complete context movie/event reviewed. Accuracy/editorial/recheck/proofreading and source hashes: work/translation/en/ui/retreat-subtitle-0.1.2579-REVIEWED.json; docs/RETREAT_SUBTITLE_REVIEW-0.1.2579.txt. Local ASR plus source context, no independent human listening/exact source orthography claim. Preserve the casual farewell and group address without invented gender or threat.
-
-Implementation
-Display the single full line for the native nonzero voice-handle lifetime at80230608, exact voice index56 at8023060C, only in native field mode2. Leading sound/pause stays inside that lifetime. Native playback completion/reset, a different voice or another mode removes the caption; no added timer/state, no changes to original event waits/audio/animation. Existing sorted/font/queue capacity/native-caption duplicate guards reused, normal22px Balsamiq. All earlier fixes including the orchid clip, full travel names/NPC dialogue and corpses spacing retained.
-One mode-comparison instruction branches to a72byte private helper. Mode13 returns to its original movie path;14 stays direct. Other modes still exit, except exact active field voice56. Helper selects one immutable record through the existing guarded glyph-rendering path; common prologue/epilogue retains complete register/stack discipline.
-Reuse48bytes of the84byte retired movie11 table, which2518 replaced with a10-record table. Source bytes match the pre2518 seven records; all current aligned DOL pointer references and663 active cue roots exclude the block. Current103 movie headers/cues/strings remain exact. Provenance, inverse and address census saved in build plan/review. This is an identified retired read-only record table, not anonymous zero/mutable state reuse.
-
-Validation
-27 field cases plus the complete movie regression case pass. Actual original opcode63 handler opens Voice/NA012D.hps and advances exactly four bytes; original event bytes remain intact. Actual native audio updater leaves the subtitle active while busy, closes/clears it at completion, and explicit native reset removes it. Only SDK audio open/busy/close endpoints modeled silently; no voice playback. Active/pause/prefix/exact capacity, stopped handle, neighboring IDs, other modes, sorted/missing font/full/overflow queues and native caption duplicate/HUD/page/size cases pass. Native glyph rectangles/UVs/color, font/style, GPR/FPR/CR/CTR/stack/queue/voice guards pass, retaining existing high-XER Unicorn limitation. All663 movie records/headers/strings remain exact and2370 movie boundary cases pass, including both IWF14 and THP13 paths.
-The initial2580 fixture incorrectly demanded all96bytes of earlier glyphs remain unchanged on append. Native queue append updates the prior glyph's next pointer at offset0x5C. Diagnostic work/analysis/retreat-verifier-diagnostic-0.1.2580.json preserves the incomplete suite and exact changed offsets; corrected2581 checks the92byte glyph payload while allowing native link updates, as the existing movie verifier does. No game asset/code changed between these suites; do not count2580 as a passing suite.
-Normal-font proof from saved actual native queue visually reviewed: work/ui/retreat-subtitle-0.1.2579/native-layout.png. Schematic background, not fresh Dolphin screenshot. No new Dolphin/natural field retreat/live voice-sync/physical hardware/Card write-restart-reload test claimed. Voice ownership is lifetime-based, not sample-position timing.
-Both original-Japanese full patch and exact public English0.8.2 upgrade completely decode to the expected1,459,978,240-byte ISO and pass actual Retro Trans Tools0.5.21 Apply xdelta, full hashes and source preservation. Existing public Automatic/RVZ evidence retained; no new public release/catalog/RVZ execution claim.
-
-Hardware-sensitive changes and evidence limits
-One executable branch plus72byte executable helper and48bytes reclaimed immutable data; existing private padding now32bytes. No OS arena/reservation/heap/font or live allocation growth; scene1,060,704bytes and general heap4,718,592bytes unchanged. New field line adds26glyphs only under the exact native voice owner. Changed execution/pointers/reclaimed data and extra queue traffic can affect real hardware. Evidence: strict inverse to2572, retired-table provenance/reference census, real native voice dispatch/updater/reset, all663 old movie roots/2370 boundary regressions and queue/ABI guards. This does not prove physical hardware rendering, natural source-scene access or synchronization. Original event/MAP/header, all1393 assets including audio/movies/font, FST/offsets and every disc byte outside DOL remain exact2572. Prior hardware-sensitive risks remain documented; HD deferred.
-
-Install
-Cold-boot new ISO and load an in-game save; emulator states can restore old code/tables. Original Japanese GT2J18rev0 uses0.1.2579-test.xdelta; exact public English0.8.2 uses v0.8.2-to-0.1.2579.xdelta. Other English versions should use the test ISO. Retro Trans Tools0.5.21 RVZ conversion remains available; local patches use Apply xdelta.
-
-ISO: work/output/Tengai-Makyou-II-English-0.1.2579-test.iso
-Expanded ISO SHA256: 173ebdeaf727a681b9d1f5580a992176e1ac1f016d3e022ace6495f1a603ae9c
-Manifest: work/analysis/next-build-drafts-0.1.2579.json
-Native: work/analysis/retreat-subtitle-native-0.1.2581.json
-Proof: work/analysis/retreat-subtitle-proof-0.1.2584.json
-Tools: work/analysis/retreat-subtitle-tools-0.1.2583.json
-Delivery: work/analysis/tested-retreat-subtitle-0.1.2579-2585.json
-Retention: work/analysis/output-retention-0.1.2585.json; latest full ISO+9 older original-source patches.2572 removed only after archive decode matches;2503 retired. Private reference/Tools ISOs removed; eight immutable public0.8.2 assets unchanged.
-
-## Internal build 0.1.2572
-
-Tengai Makyou II — English test0.1.2572 / checkpoint0.1.2577 — 2026-11-07
-
-Requested subtitle
-Install Manjimaru's omitted boast, "No one can stand in my way!", in the original Dark Orchid finishing movie26 and later movie75 variant. Original movie26 decoded artwork matches the supplied screenshot. The actual native Sound table binds both510-frame/30fps movies to the identical26_ran1.hps voice. One utterance translated; two native movie headers use one shared immutable cue. All earlier fixes retained, including full travel names/NPC translations and the corpses spacing fix. No GitHub release publication.
-
-Language and timing evidence
-Previous two-model VAD scans produced zero segments, so the subtitle table had no entries for these movies. Two unprompted no-VAD model returns recover the boast's beginning and phonetic ending. The ending is corrupted in ASR; the first-person published scene recollection explicitly quotes the conventional boast and corroborates the intended reading. Source GC artwork/audio and native bindings identify this build's movie; the external recollection refers to the original version and does not establish GC timing. Review: work/translation/en/ui/orchid-subtitle-0.1.2572-REVIEWED.json; docs/ORCHID_SUBTITLE_REVIEW-0.1.2572.txt. Accuracy, complete confident English editorial wording and final proofreading recorded. No attack name or added threat; no translation invented for music/impacts. Local ASR plus scene/context and corroborating quotation; no independent human-listening or exact GC orthography claim. Timings approximate: source0.54..3.50seconds from the full model, native frames17..120 including existing0.5second hold; cue absent at121. Other model interval0..3.84seconds differs; no live voice-sync validation claimed.
+All10 older mouth-action/recovery streams now use a complete owner phrase:
+their own mouth for self, or the recipient's English possessive name for
+another party member. The Japanese self label and duplicate apostrophe-s
+are removed. The newer shared mouth action and non-owner group suffixes
+retain their existing behavior. Actual Seiryo Pill, Buckwheat Dumpling and
+Kanro Pill effects/inventory changes exactly match0.1.2620.
 
 Validation
-All663 cue records/strings/line tables read back; previous661 cue words/times/geometry remain exact.2370 native boundary cases across62 subtitled movie IDs verify frame selection, exact glyph count/positions,24px normal atlas and unchanged native timelines. Thirty extra new-cue tests cover both IDs' before/start/end/after frames, full and exact-capacity queues, bad metadata/mode, missing font, sorted queue and native-caption duplicate suppression. Existing nested Item healing still completes with its fixed constructor; no game audio playback. Native GPR/FPR/CR/CTR/font/stack checks pass; pre-existing high-XER Unicorn limitation retained.
-Native subtitle queue proofs for both variants visually reviewed: work/ui/orchid-subtitle-0.1.2572/native-layout.png. These show actual glyphs/geometry over a schematic background, not fresh Dolphin screenshots or natural clip access. No new Dolphin/natural movie or live audio synchronization test, physical-console playthrough or actual Card write/restart/reload test.
-Both original-Japanese full patch and exact public-English0.8.2 upgrade fully decode to the expected1,459,978,240-byte ISO and pass actual Retro Trans Tools0.5.21 Apply xdelta backend, with complete output hashes and source preservation. Existing public0.8.2 Automatic/RVZ evidence retained; no new Automatic catalog or RVZ execution claim for this local test.
+Nine old/new province-construction cases cover three actual native opening
+blocks with no visits, the pictured first four visits, and all17 visits.
+Complete glyphs, bounds, highlights,44 directional inputs per case, native
+cleanup and original cursor-index sequences passed. Both17-record tables
+retain all12 non-display bytes. Every kind0/kind5 item, all four actors and
+both line/character reveal modes were exercised through the native Item
+handoff. Ten mouth variants cover all four actors with self/other targets
+and full/line/character reveal. Actual item use compares native effects and
+party bytes with the prior build. Password construction, both answers,
+wrong answers and editing controls passed, as did existing village/travel
+item and escape-scroll paths. Audio endpoints were intercepted and silent.
+Both patches reproduce the entire ISO through Retro Trans Tools0.5.23.
+The proof uses native glyph coordinates on schematic panels.
 
-Hardware-sensitive implementation and limits
-Append48 immutable bytes (one ASCII string, line and cue records plus alignment) within existing reserved private padding;104bytes remain. Replace two formerly-zero16byte subtitle headers and DOL data-size word; strict inverse recovers2564. No renderer executable instruction, font, OS arena, fixed/general/scene heap, or allocation size changes. Scene1,060,704bytes, general heap4,718,592bytes retained. New visible cue adds27 glyphs to the existing queue during both short sequences; tested capacity/duplicate guards prevent overwrite.
-All1393 disc assets, original movie/audio/font bytes, MAP/header, FST, offsets and all bytes outside the DOL are exact2564. DOL loading size/pointer/header changes and newly active overlay draws can affect real hardware despite unchanged reservations. Evidence: section bounds/private padding, strict inverse, all record readback and native timing/queue/ABI checks, exact other disc bytes and complete patch roundtrips. Native fixtures model selected endpoints silently; they do not prove physical GameCube rendering, natural scene access or live synchronization. Earlier hardware-sensitive risks remain documented in prior build notes; HD deferred.
+Hardware-sensitive changes and limits
+Province backings grow from5x9 to16x9, requesting2376 additional live bytes
+before allocator rounding. Province fonts change24 to20 and column/highlight
+geometry changes with them. Display pointers change in both province tables,
+two parser call sites use direct native ASCII, and two new item streams are
+admitted to the existing actor/item lookup. A bounded owner adapter covers
+the older recovery prefixes. These allocations, pointers and branches can
+affect console heap pressure, timing and rendering. New strings/helpers use
+verified unreferenced NOP padding after rewritten password return points;
+all claimed padding has no existing direct branch or pointer references.
+There is no DOL-size, arena, static-reservation, MAP, font-asset or other disc
+byte growth/change. The strict inverse restores0.1.2620.
 
-Install
-Cold-boot the new ISO and load an in-game save; emulator states can restore old code/tables. Original Japanese GT2J18rev0 uses0.1.2572-test.xdelta; exact public English0.8.2 uses v0.8.2-to-0.1.2572.xdelta. Other English builds should use the supplied test ISO. Retro Trans Tools0.5.21 RVZ conversion remains available; local patches use Apply xdelta.
+Native tests seed visit flags, execute original opening blocks and model
+peripheral GPU/audio services and completed fade/message flags. They do not
+validate natural access, the final teleport/scene load, memory pressure in
+a live scene, memory-card write/reload or physical GameCube play. No new
+Dolphin session or real-hardware test was performed.
 
-ISO: work/output/Tengai-Makyou-II-English-0.1.2572-test.iso
-Expanded ISO SHA256: 335424f532f10311440af10bf9da48d68b5d77b3654479dccd0a9ace0f094dd4
-Manifest: work/analysis/next-build-drafts-0.1.2572.json
-Native: work/analysis/orchid-subtitle-native-0.1.2573.json
-Proof: work/analysis/orchid-subtitle-proof-0.1.2576.json
-Tools: work/analysis/orchid-subtitle-tools-0.1.2575.json
-Delivery: work/analysis/tested-orchid-subtitle-0.1.2572-2577.json
-Retention: work/analysis/output-retention-0.1.2577.json; latest full ISO and9 older original-source xdelta versions.2564 removed only after archive decoded to its exact hash;2498 retired. Temporary public reference/Tools verification ISOs removed. Eight immutable public0.8.2 assets unchanged.
+Load an in-game save with the new ISO.
+ISO work/output/Tengai-Makyou-II-English-0.1.2625-test.iso
+SHA-256 d26caf6990e5598b9d84f42beeb34ed6799c69faf84781545a6c83e69e5eab1a
 
-## Internal build 0.1.2564
-
-Tengai Makyou II — English test0.1.2564 / checkpoint0.1.2569 — 2026-11-07
-
-Requested fix
-Remove the full-width space before corpses in MAP-063-00-000f94. Replace it with one ordinary interword space; reflow the full two-page utterance, respecting existing page turns,60-character/528px limits, empty-reading markers and all native speaker/audio controls. No wording or translation change. Fourteen context rows read, one edited; accuracy/editorial/proofreading decisions and before/after recorded in work/translation/en/ui/field-wrap-0.1.2564-REVIEWED.json. The screenshot is the second page, not a separate script row. All previous fixes, including2558 full travel names and NPC translations, remain installed.
-
-Validation
-Three complete native packed-parser cases (slow, fast, confirm); identical packets and complete two-page text, widths and spaces pass. One affected ordinary room through actual native CNS decoder. All9635 ordinary FIELD rows and9635 caller operands read back; all unrelated compressed rooms exact. All31 registered typed descriptors/streams verified; affected room is ordinary, so no new typed-loader route claim. Existing translated allocation reused without growth. Normal Balsamiq actual native-packet proofs for both pages visually reviewed: work/ui/corpses-gap-0.1.2564/final-two-pages.png. These are packet proofs, not fresh emulator screenshots/natural conversation playback. Final proof separates single-line page resets at identical y; the generic diagnostic preview in2565 overlaid them and was superseded before visual review. Native execution/game assets are unchanged.
-Both original-Japanese full patch and exact public-English0.8.2 upgrade fully decode to the expected1,459,978,240-byte ISO, and pass actual Retro Trans Tools0.5.21 Apply xdelta backend with complete output hash and input preservation. No new Automatic catalog entry or RVZ execution claim; published0.8.2 evidence retained.
-
-Implementation and hardware-sensitive limits
-DOL code/data byte-exact2558, no new executable hooks, font edits, static reservation, live backing allocation or decoded-room growth. Existing private padding remains152bytes. MAP compressed archive grows96bytes; header rebuilt; FST and later disc offsets shift2048bytes.1391 unrelated assets, including movies/audio/font, byte-exact2558. Strict inverse restores the original room/DOL and all VM references remain unchanged.
-Changed compressed bytes, archive/header sizes and FST offsets can affect DVD loading, stream decoding and real-console transitions. Evidence: strict inverse, unchanged decoded allocation and DOL, actual native CNS/parser cases, exact31 descriptors and all caller readbacks, full asset integrity and patch roundtrips. Native fixtures model selected services/audio endpoints silently; they are not physical GameCube validation. No new Dolphin playback, natural ninja village conversation/transition, hardware playthrough or Card write/restart/reload test claimed. HD remains deferred. Earlier hardware-sensitive risks and Store constructor regression evidence remain documented in earlier notes.
-
-Install
-Cold-boot the new ISO and load an in-game save. Emulator states can restore old script bytes. Original Japanese GT2J18rev0 uses0.1.2564-test.xdelta; exact public English0.8.2 uses v0.8.2-to-0.1.2564.xdelta. Other English versions should use the supplied test ISO. Retro Trans Tools0.5.21 existing RVZ extraction remains supported; no new public release requested.
-
-ISO: work/output/Tengai-Makyou-II-English-0.1.2564-test.iso
-Expanded ISO SHA256: 0923e2d26e9c22e4a020fc6e49d16de52bb3908e746bb3dfb27b45a68ff857ae
-Manifest: work/analysis/next-build-drafts-0.1.2564.json
-Native: work/analysis/corpses-gap-native-0.1.2565.json
-Final reviewed proof: work/analysis/corpses-gap-proof-0.1.2568.json
-Tools: work/analysis/corpses-gap-tools-0.1.2567.json
-Delivery: work/analysis/tested-corpses-gap-0.1.2564-2569.json
-Retention: work/analysis/output-retention-0.1.2569.json; latest full ISO and nine older original-source xdelta versions. Prior2558 removed only after archive decoded to its exact hash. Immutable public0.8.2 unchanged; private reference/Tools verification ISOs removed.
-
-## Internal build 0.1.2558
-
-Tengai Makyou II — English test0.1.2558 / checkpoint0.1.2563 — 2026-11-07
-
-Requested translations and layout
-Translate the travel destination popup and show full English names. All113 native display records use91 reviewed complete names, including Inuyama Town, Nagashino Town, Fukushima Village and Umase Village. Existing project glossary spellings reused. Only display pointers change; source Japanese strings, the121-entry save-location table, destination visited/event flags, map IDs and coordinates remain byte-exact. Cancel retains original semantics. The actual shared Item/Scroll/Arts travel constructor now uses20 columns with20px normal Balsamiq and direct native ASCII parsing; native automatic frame is448px wide, centered at x96. Frame height remains native row-dependent; longest tested list has11 rows. No abbreviation or clipping of names.
-
-Install two dialogue translations in three actual scene rows (one repeated scene state): MAP-060-02-000341, MAP-061-02-000341, MAP-063-07-00010c. Fifteen adjacent/context rows examined; source accuracy, editorial and final proofreading recorded in work/translation/en/NPC-extra-0.1.2557-REVIEWED.json. Elderly speaker's yome interpreted as daughter-in-law from screenshot and adjacent wife's line; do not infer the husband is dead. The returning ninja's nervous laughter, forest repetition and first-person fear of being eaten are preserved, without naming an eater. Original speaker/audio/page/end controls retained.
-
-Validation
-101 saved native cases pass. Nine complete new NPC packed-parser cases: three streams x slow/fast/confirm, identical output packets; three actual native CNS room decodes. Read back all9635 ordinary FIELD rows and9635 real VM caller operands; previous9632 rows remain exact. All31 typed binding descriptors/decoded streams and87 payloads retained; these three edited rooms are ordinary, so no affected typed-loader execution claim. Installed FIELD total9722 including87 typed/dynamic rows;51 indexed rows remain pending, not a full-translation claim.
-174 actual travel constructors: old/new pair for29 native region IDs x three visited/story flag policies. All113 records reached across the tests, native filtered list/order matches the old build, full glyph bounds and native cursor/highlight wrap checked. No pre-expanded popup header fixture substitutes for the real constructor. Actual Wind Talisman Item and Feather Robe Scroll Use/User/Item paths exercise travel open, Down, Back, reopen, destination confirm and native cleanup; source party/save bytes and selected native destination record's12 gameplay bytes unchanged. Arts shares the patched constructor by source-bound call site; complete Arts menu flow not newly tested. Retained native Kanro healing and Ear Pick no-effect paths pass. All audio endpoints modeled silently; no Dolphin launched.
-Six final normal-font layout proofs visually reviewed (Hida/Owari/longest list and three full NPC streams): work/ui/travel-dialogue-0.1.2558/all-layouts.png. Travel proofs render actual native glyph/selector positions with a schematic border; these are not fresh Dolphin screenshots or natural scene captures.
-Both xdelta routes completely decode to the expected1,459,978,240-byte ISO and pass actual Retro Trans Tools0.5.21 Apply xdelta backend, full output hashes and input preservation. Routes: original Japanese GT2J18rev0 and exact public English0.8.2. This is a local test build; no new Automatic catalog entry or public release. Existing0.8.2 Automatic/RVZ evidence is retained, not a new RVZ execution claim for2558.
-
-Hardware-sensitive changes, evidence and limits
-Three travel-only executable instructions change constructor columns/font and call the existing native ASCII parser;113 name-pointer fields change. New immutable Kyoto string/padding grows DOL8bytes inside existing reserved padding, leaving152bytes. No new OS arena/static reservation, no font asset changes. Scene heap remains1,060,704bytes; general heap4,718,592bytes. Source save-location names/gameplay fields stay intact. Strict inverse restores2552 DOL; all1391 unrelated disc assets including movies/audio/font remain exact.
-Wider popup backing adds up to4,224 live bytes versus original4-column text backing (16 extra columns x11 rows x24bytes); all native allocator guards and full cleanup pass. This is new runtime heap pressure and may affect a scene with lower remaining memory. Native fixtures demonstrate bounds/lifetimes, not physical-console free-memory sufficiency. No general font/shop constructor change; original Store actual-entry regression evidence remains documented and is not replaced by this travel fixture.
-Three translated decoded room allocations grow224,224,160bytes; maximum224bytes. All source VM references patched exactly/reversibly and native CNS decodes pass. Compressed MAP/header rebuilt; later FST/disc offsets shift2048bytes. These can affect actual DVD reads, room/scene loading and event execution. Evidence: complete disc asset integrity, strict inverse, native decoder/parser/input tests and full patch roundtrips. No fresh Dolphin playback, natural travel warp/destination load, natural NPC route, physical GameCube playthrough or actual Card write/restart/reload tested. HD remains deferred. Earlier hardware-sensitive changes remain in prior notes.
-
-Install
-Cold-boot this ISO and load an in-game save. Emulator save states can restore old code/data. Original Japanese source uses0.1.2558-test.xdelta; exact public English0.8.2 uses v0.8.2-to-0.1.2558.xdelta. Other English versions should use the supplied test ISO. Retro Trans Tools0.5.21 RVZ conversion remains available; new local patches use its Apply xdelta tab.
-
-ISO: work/output/Tengai-Makyou-II-English-0.1.2558-test.iso
-Expanded ISO SHA256: 37b26b16a0390b978ccfa8b33b46be8b902324ae392108a000144057b64bb9d9
-Manifest: work/analysis/next-build-drafts-0.1.2558.json
-Native: work/analysis/travel-dialogue-native-0.1.2559.json
-Proofs: work/analysis/travel-dialogue-proofs-0.1.2562.json
-Tools: work/analysis/travel-dialogue-tools-0.1.2561.json
-Delivery: work/analysis/tested-travel-dialogue-0.1.2558-2563.json
-Retention: work/analysis/output-retention-0.1.2563.json; latest full ISO and nine older original-source xdelta versions. Prior2552 removed only after its original-source patch decoded to its exact hash. Old2487 patch/sidecar removed within retention; immutable public0.8.2 assets unchanged. Tools verification ISOs removed.
-
-## Historical v0.8.2 evidence and inherited limits
-
-# Testing and limitations — v0.8.2
-
-Exact alias of internal0.1.2552/checkpoint0.1.2556; no game-byte edits during release packaging. The current notes below qualify native-only evidence and physical-hardware risks. Live Automatic/RVZ proof is added after publication.
+## Equipment curse notices
 
 
+Equipment curse notices
+The pictured post-equip discovery now displays the complete equipment name
+on the first line and Cursed! on the second. This reports the item's cursed
+status without implying that equipping cast a new curse. Existing canonical
+equipment names, native equipment flags, eligibility and stat calculations
+are retained.
 
-## Internal0.1.2552
-
-Tengai Makyou II — English test0.1.2552 / checkpoint0.1.2556 — 2026-11-07
-
-Requested fix
-Remove the full-width space before Hermit Kasaiwa in MAP-062-01-00014f. Replace it with one ordinary interword space; reflow the full four-page utterance, respecting existing page turns,60-character/528px limits, colored name and all native speaker/audio controls. No wording or translation change. Four context rows read, one edited; accuracy/editorial/proofreading decisions and before/after recorded in work/translation/en/ui/field-wrap-0.1.2552-REVIEWED.json. The screenshot is the last page, not a separate script row. All previous fixes, including2545 Item actions/no-effect results, remain installed.
+Category-wide audit
+Five source variants were audited: curse discovery at80189ae0, removal at
+80189a88,8018a428 and8018a484, and storage at80187a88. The missed discovery
+and alternate equipment removal now use the shared complete English name
+formatter. The storage source is defensively covered by that formatter;
+its actual Storage Counter path already uses a separate English formatter
+and was verified as well. The two existing equipment/item cannot-be-sold
+variants8018a44c and8018a468 retain their complete English names and warnings.
+Enemy curse attacks/status effects are a different message family and were
+not modified. Review records include accuracy, editorial and proofreading.
 
 Validation
-Three complete native packed-parser cases (slow, fast, confirm); identical packets and complete four-page text, widths and spaces pass. One affected ordinary room through actual native CNS decoder. All9632 ordinary FIELD rows and9632 caller operands read back; all unrelated compressed rooms exact. All31 registered typed descriptors/streams verified; affected room is ordinary, so no new typed-loader route claim. Existing translated allocation reused without growth. Normal Balsamiq actual native-packet proofs for all four pages visually reviewed: work/ui/castle-gap-0.1.2552/MAP-062-01-00014f.png. These are packet proofs, not fresh emulator screenshots/natural conversation playback.
-Both original-Japanese full patch and exact public-English0.8.1 upgrade fully decode to the expected1,459,978,240-byte ISO, and pass actual Retro Trans Tools0.5.21 Apply xdelta backend with complete output hash and input preservation. No new Automatic catalog entry or RVZ execution claim; published0.8.1 evidence retained.
+1547 native constructor/parser cases cover all237 equipment IDs in six
+variants and all125 item IDs in the item-sale variant. Full names, suffixes,
+durable source buffers, ABI, native glyph queues and free/guard checks pass.
+The12 longest gear names were checked against all six gear variants for
+both horizontal and vertical message-frame bounds. Native reveal/update and
+Confirm completion pass in26 cases covering both ordinary and accelerated
+reveal, Tacky Clothes and Queen's Crown, across all seven variants.
 
-Implementation and hardware-sensitive limits
-DOL code/data byte-exact2545, no new executable hooks, font edits, static reservation, live backing allocation or decoded-room growth. Existing private padding remains160bytes. MAP compressed archive grows96bytes; header rebuilt; FST and later disc offsets shift2048bytes.1391 unrelated assets, including movies/audio/font, byte-exact2545. Strict inverse restores the original room/DOL and all VM references remain unchanged.
-Changed compressed bytes, archive/header sizes and FST offsets can affect DVD loading, stream decoding and real-console transitions. Evidence: strict inverse, unchanged decoded allocation and DOL, actual native CNS/parser cases, exact31 descriptors and all caller readbacks, full asset integrity and patch roundtrips. Native fixtures model selected services/audio endpoints silently; they are not physical GameCube validation. No new Dolphin playback, natural castle conversation/transition, hardware playthrough or Card write/restart/reload test claimed. HD remains deferred. Earlier hardware-sensitive risks and Store constructor regression evidence remain documented in earlier notes.
+Actual native equipment callbacks equip Tacky Clothes on Kabuki and Queen's
+Crown on Kinu, display Cursed!, and retain the0x80 curse flag. Their complete
+400-byte party records before/after equip exactly match0.1.2625. Reopening
+with those exact cursed records retains the English equipped name; attempts
+to change the slot produce the translated refusal before a replacement
+chooser can open, with no party mutation. Equipment modal dismissal is
+modeled for fixture teardown rather than performed by the full game loop.
 
-Install
-Cold-boot the new ISO and load an in-game save. Emulator states can restore old script bytes. Original Japanese GT2J18rev0 uses0.1.2552-test.xdelta; exact public English0.8.1 uses v0.8.1-to-0.1.2552.xdelta. Other English versions should use the supplied test ISO. Retro Trans Tools0.5.21 existing RVZ extraction remains supported; no new public release requested.
+Actual Storage Counter entry rejects cursed Tacky Clothes, displays its
+existing English warning, returns through state3 to Gear state2, then exits
+and frees all four live allocations. Party/inventory/funds stay exact.
+General Store actual entry, long highlights and scrolling, Buy/Sell
+confirmations, funds, Back/Exit and four same-pool reopens pass. Actual Sell
+refuses unsellable/cursed gear, then an ordinary sale changes funds once.
+Password native construction, both accepted answers, wrong answers and
+editing controls pass after reuse of retired password padding.
 
-ISO: work/output/Tengai-Makyou-II-English-0.1.2552-test.iso
-Expanded ISO SHA256: 0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d
-Manifest: work/analysis/next-build-drafts-0.1.2552.json
-Native/proofs: work/analysis/castle-gap-native-0.1.2553.json
-Tools: work/analysis/castle-gap-tools-0.1.2555.json
-Delivery: work/analysis/tested-castle-gap-0.1.2552-2556.json
-Retention: work/analysis/output-retention-0.1.2556.json; latest full ISO and nine older original-source xdelta versions. Prior2545 removed only after archive decoded to its exact hash. Immutable public0.8.1 unchanged; private reference/Tools verification ISOs removed.
+Retro Trans Tools0.5.23 Apply xdelta reproduces the entire ISO from both
+the clean Japanese source and exact public Englishv0.8.3. Both patches also
+pass complete independent xdelta decode/hash checks. Public release assets
+are unchanged. The preview uses native glyph positions on schematic panels.
+All tests are silent native-game-code fixtures with peripheral services
+modeled. No Dolphin session or physical console test was performed.
+
+Hardware-sensitive changes and limits
+The CP932 constructor gate now recognizes seven exact message sources,
+with the original fallback for all others. The old84-byte gate is reused
+as a suffix selector, preserving default sale and earlier curse suffixes.
+New text and the132-byte gate occupy verified unreferenced retired password
+NOP padding. Pointer/branch scans found no code entry into the reclaimed
+gate except the replaced constructor hook; one timed-caption data word
+resembles a conditional branch and was explicitly classified/left exact.
+
+The three newly admitted fallback sources use the existing64x3 backing,
+4608 bytes rather than1656:2952 additional live bytes before rounding.
+Actual Storage uses its existing separate formatter. New branches, pointer
+choices and potentially larger temporary allocations may affect console
+timing, memory pressure or rendering. The static256-byte refusal buffer
+is reused; the fixture verifies stable text during delayed reveal. Natural
+field/shop scene access, concurrent modal ownership, live-scene heap
+pressure, memory-card write/reload and real GameCube behavior remain
+unverified. Native passes are not hardware validation.
+
+The DOL has no size/arena/static-reservation growth. All disc bytes outside
+the DOL, MAP files and normal Balsamiq font assets match0.1.2625. A strict
+inverse restores the previous DOL exactly. Start the new ISO and load an
+in-game save.
+
+ISO work/output/Tengai-Makyou-II-English-0.1.2630-test.iso
+SHA-256 4780fedb0e97f706cb4856d5a226a5fe1134d6c91bae7f230f2b7196dd5d0e6f
+
+## Shop titles
 
 
-## Internal0.1.2545
+Shop title category
+The reported title is now Traveling Merchant. All14 native title IDs were
+audited through actual shop entry800e0af0 and callback800de650. Ten missed
+titles are translated: Kimono Shop, Pharmacy, Women's Shop, Accessories
+Shop, Traveling Merchant, Open-Air Market, Swordsmith, Doll Shop, Pick the
+Winner!, and General Goods. Equipment Shop, Item Shop, General Store and
+Tea House retain their existing terminology. The General Store table entry
+now points to its existing English string directly. Only display pointers
+change; title IDs, stock registrations, prices and transactions are retained.
+The separate storage/inn interfaces are outside this fourteen-title family.
 
-Tengai Makyou II — English test0.1.2545 / checkpoint0.1.2551 — 2026-11-07
-
-Requested translation
-Manjimaru gripped the Ear Pick of Love.
-But it had no effect.
-The short third screenshot is the same action during reveal, not a third source message.
-
-Related scope and review
-Translate ten native field Item dispatch streams: eight distinct actions followed by no effect (grip, play, blow, put on, peer into, strike, wave, hold a hand over), plus the grip-only variant and Golden Bug smelly-hands outcome. Retain all actor/item/wait/page controls, existing English item/party names, IDs and native effects. Twelve source rows examined, ten edited, with accuracy/editorial/proofreading decisions in work/translation/en/ui/no-effect-0.1.2545-REVIEWED.json. Neighboring mouth-action and HP-result messages read and left unchanged. No target added to the no-effect result. Kind58 has no ordinary eligible Item definition; exact stream tested after real window construction without claiming natural access.
-
-Implementation and inherited fixes
-New immutable strings and two scoped display-name range gates add520 DOL bytes inside the existing reservation. Arena low0x80389000; scene1060704bytes; remaining private padding160bytes. No additional static reservation, live allocation, decoded room or font growth. Actual field Item constructor still provides64x3 backing from2509; no pre-expanded constructor substitute. Dispatch pointers change only inside801caf10..801cb034. Previous old/new healing-name ranges and fallback paths remain supported. Exact inverse restores2538 DOL. All1393 assets, MAP, font, FST, disc offsets, movies/audio and every other disc byte remain exact2538. Earlier dialogue wraps, healing fix and battle-reward translations remain installed.
+The existing shop layout did not consistently center these English strings.
+After the title is parsed, row0 now uses the existing proportional Sell-quote
+centering routine. All14 headings center within1 native pixel of320 and
+retain complete English glyphs inside the600px frame. Buy/Sell/Cancel rows,
+selectors and their input handling retain their original behavior.
 
 Validation
--41 native cases total.34 full event-item cases run actual Use/User/Item handoff, constructor, action parser, page waits and state cleanup: Ear Pick across all four actors and full/fast/character reveal (12), eleven related/longest-name items across fast/character reveal (22).
--No-effect leaves exact party stats/HP/MP/inventory unchanged. Golden Bug effect and inventory match old2538 execution. Bounds, native ABI and memory guards pass. Two grip-only exact-stream cases use a real constructed window; one original smelly-effect comparison, two real Kanro healing self/other cases, one older recovery-range case and one actual three-reward producer regression complete41.
--24 visible pages from12 representative actual native packet captures rendered with normal Balsamiq atlas and visually reviewed: work/ui/no-effect-0.1.2545/final-proof/all-pages.png. These are native-packet proofs, not Dolphin screenshots. Older unreviewed2547 diagnostic gallery grouped consecutive one-line pages incorrectly;2550 corrects proof grouping by x/y cursor reset. Native case data and execution remain unchanged. Use only2550 final proofs for visual approval.
--Both original Japanese and exact public English0.8.1 patches fully decode to the target ISO and pass actual Retro Trans Tools0.5.21 Apply xdelta backend with complete output hash and input preservation. No new GUI/Automatic catalog or RVZ execution claimed for this local test. Published0.8.1 Automatic/RVZ evidence remains recorded separately and public files unchanged.
+All14 actual shop constructors/open callbacks and close/free paths passed.
+Each verifies the real48x5 top backing, complete title and main labels,
+normal English font page, glyph bounds and measured title center. The
+Traveling Merchant native workflow executes11 highlights,44 repeated
+highlights/scrolls, purchase confirmation/recipient/funds deduction, Sell
+category/confirmation/funds update, Back and Exit. The General Store runs
+the same transaction workflow and four same-pool reopens. This is real
+constructor coverage, not a precreated larger header.
 
-Hardware-sensitive risk and limits
-Executable veneers, new control-string addresses, DOL section growth/alignment and display-name gates can affect instruction cache, pointers and real-console memory. Evidence: strict inverse, bounded disjoint-range gates, existing arena/reservation,160-byte padding, all asset/disc readback, native action/effect/ABI/guard/cleanup tests and full patch roundtrips. No extra live/static allocation introduced; previous buffer-growth risks remain in earlier notes. Native fixtures model selected OS/audio endpoints and are silent; they are not real-hardware validation. No new Dolphin playback, natural cave navigation, physical GameCube test, complete playthrough or Memory Card write/restart/reload claim. No font/shop changes; actual Store-entry regression evidence retained from prior work. HD remains deferred.
+Native password construction, both correct answers, wrong answers and
+editing passed after reuse of retired password padding. All audio endpoints
+are silent. Stock/party are seeded, fades and peripheral services modeled;
+natural map/NPC access was not exercised. The preview shows only the title
+and action row using native glyph coordinates on a schematic panel.
 
-Install
-Cold-boot the new ISO and load an in-game save; emulator states can restore old code/text. Original Japanese GT2J18rev0 uses0.1.2545-test.xdelta. Exact public English0.8.1 uses v0.8.1-to-0.1.2545.xdelta with Retro Trans Tools0.5.21; RVZ extraction uses its existing support. Do not apply the upgrade to a different English build; use the test ISO instead.
+Both original-source and publicEnglishv0.8.3 upgrade patches reproduce the
+entire ISO with Retro Trans Tools0.5.23 Apply xdelta and independent complete
+xdelta decode/hash checks. Immutable public release assets stay exact.
 
-ISO: work/output/Tengai-Makyou-II-English-0.1.2545-test.iso
-Expanded ISO SHA256: fd26dbb070e063615bb62d12230874b71ebde3db761c3f4bfd42873ef0cb08ea
-Manifest: work/analysis/next-build-drafts-0.1.2545.json
-Evidence: work/analysis/no-effect-native-0.1.2547.json; work/analysis/no-effect-tools-0.1.2549.json; work/analysis/no-effect-proof-0.1.2550.json; work/analysis/tested-no-effect-0.1.2545-2551.json
-Retention: work/analysis/output-retention-0.1.2551.json; latest full ISO + nine older original-source xdelta versions. Prior2538 removed only after archived patch decoded to its exact full hash. Public0.8.1 assets retained. Private public-reference and Tools verification ISOs removed.
+Hardware-sensitive changes and limits
+Eleven title-table display pointers change, including the direct English
+General Store pointer.138 bytes of complete strings and a24-byte alignment
+wrapper use verified unreachable, unreferenced NOP padding after rewritten
+password routines. A single branch replaces the shop callback's load at
+800de924; the wrapper reloads the original context, calls existing helper
+8037798c for title row0, reloads the context and returns to800de928. The
+native outer callback already saves LR; the existing helper saves its
+nonvolatile registers. Its code bytes are verified exact against2082.
+Pointer/branch scans verify only the claimed padding ranges; original
+password branch-to800b0048 remains exact and skips the added title data.
 
+These display pointers and the scoped callback branch can affect console
+rendering or timing. No DOL-size, arena, static-reservation, glyph-backing,
+font-asset or other disc-byte growth occurs. All non-DOL bytes match2630;
+strict inverse restores its complete DOL. Native fixture passes do not
+validate live-scene heap pressure, natural scene transitions, memory-card
+write/reload or physical GameCube behavior. No Dolphin or hardware test was
+performed. Start the new ISO and load an in-game save.
 
-## Internal0.1.2538
+ISO work/output/Tengai-Makyou-II-English-0.1.2635-test.iso
+SHA-256 3f8e99810c573c3c8867274857d592a5a514f0b78bd65a3e16259773b86dc7ff
 
-Tengai Makyou II — English test0.1.2538 / checkpoint0.1.2544 — 2026-11-07
-
-Requested fixes
-- Remove the gaps around Owari Province, Owari/Jomon Cave and Kabuki; rewrap all pages of three reported dialogue rows. Preserve wording, colored names and page turns. Seven neighboring FIELD rows read; three edited.
-- Translate the actual shared field Item action that earlier recovery work missed. Example: Manjimaru put the Kanro Pill / in their own mouth! Other-recipient example: in Kabuki's mouth! Original actor/item/owner/line/wait/page/nested-result controls stay ordered. Actor/target IDs, HP effect and item consumption remain native.
-- Translate actual postbattle1/2/3-item reward formats and English item/equipment name inputs: Obtained Kanro Pill! Each reward gets its own line. Run native getters and sprintf; do not change reward selection or inventory logic. Full11-row accuracy/editorial/proofreading review/count correction evidence: work/analysis/item-gaps-review-0.1.2544.json.
-
-Implementation and inherited behavior
-New immutable strings and scoped veneers add1056 DOL bytes within the existing reservation: arena low0x80389000, scene1060704bytes, private padding680bytes. No new static reservation or decoded room/font growth. Original font,1391 other assets, movies/audio, encounters and save format remain exact2529. Compressed MAP delta and FST offset change are recorded in the build manifest; later assets shift2048bytes. All31 typed-room descriptor records remain exact because the two changed rooms are ordinary only.
-Actual field Item producer retains the2509 fix and already64x3 backing. Two native dispatch-table pointers select the new shared parent; scoped item/party/owner name adapters admit only its address range and keep all old recovery/refusal fallbacks. For battle loot, only the three formatter call sites and result-clear call are redirected. The result-clear wrapper resizes a smaller reused window to64x3 before parsing and frees old backing; an already64-column window allocates nothing. Maximum live growth versus23x3 is2952bytes, with zero new permanent reservation. No broad parser replacement or original Japanese table mutation.
-
-Validation
--52 native case receipts:9 complete FIELD parser executions in fast/typewriter/confirm modes;2 changed rooms through the actual CNS decoder;32 real Kanro Item menu/effect/action/nested-result cases across all16 actor/recipient pairs in fast and character reveal;2 related healing-item cases;1 old-recovery-range regression;7 actual reward-producer cases for1/2/3 results from23- and64-column contexts plus longest names/equipment.
--Use actual Use/User/Item/Target handoff and native state-machine cleanup. Verify exact HP change, exactly one item consumed, no other party-stat/MP/inventory edits,64x3 shape, full text, bounds, guarded memory/ABI, old/new backing ownership and free. Confirm all34 field Item cases finish and preserve the earlier shared healing fix.
--Execute actual postbattle producer80053c84, original native item/equipment getters, native sprintf, queued reward consumption and state update. Only the battle-condition predicate and selected audio endpoints are modeled. Exact English names,1/2/3 complete lines, full remaining party inventory/stats, backing resize/no-op and native cleanup pass. Current postbattle framebuffer/playback is not claimed.
--All9632 ordinary FIELD rows and9632 VM references read back. Modified ordinary-room streams decode byte-for-byte under native CNS. All31 registered typed bindings/payload hashes checked; no affected typed-room load route exists, so0 extra typed load tests are claimed. work/analysis/item-gaps-loaders-0.1.2543.json records that qualification.
--Every affected page and actual self/other/reward producer packet layout rendered using the normal Balsamiq atlas and reviewed: work/ui/item-gaps-0.1.2538/all-pages.png. These are native-packet proofs, not emulator screenshots or natural navigation.
--Both original Japanese full patch and public English0.8.1 upgrade fully decode to expected ISO hash and pass Retro Trans Tools0.5.21 Apply xdelta backend, preserving inputs. Local test only: no new GitHub release or Automatic catalog entry. Current public0.8.1 assets stay unchanged. Earlier2529 fixes remain installed.
-
-Hardware-sensitive risks and limits
-New executable veneers/control pointers, DOL extent/alignment, changed compressed room streams and FST disc offsets can affect optical loading, instruction cache, display ownership and real-console memory. New battle64x3 backing can add2952 live general-heap bytes for a23-column reused result window, with fragmentation/timing risk. Evidence: strict inverse to2529; unchanged arena/heaps/reserve, section bounds/private padding; native formatter/getter/action/decoder/ABI/guard/resize/free cases; complete asset/disc readback and patch roundtrips. Native tests are not physical GameCube validation. No new Dolphin/natural-world/battle replay, exact reported healing location, full playthrough or actual Card write/restart/reload claim. Tests are silent native fixtures; audio endpoints modeled without output. HD remains deferred. Earlier subtitle/alignment and healing-buffer risks remain documented in prior notes.
-
-Installation
-Cold-boot new ISO; use an in-game save. Emulator states can restore old code/text. Original Japanese GT2J18rev0 takes0.1.2538-test.xdelta. Exact public English0.8.1 ISO/RVZ takes v0.8.1-to-0.1.2538.xdelta using Retro Trans Tools0.5.21 Apply xdelta with RVZ extraction enabled. Do not apply that upgrade to2529 or another English build. Use the supplied new test ISO for those cases.
-
-ISO: work/output/Tengai-Makyou-II-English-0.1.2538-test.iso
-Expanded ISO SHA256: e2bf143ad81d1914118bec2667175b1ffbecee581290d546989d8f2a5885adf1
-Manifest: work/analysis/next-build-drafts-0.1.2538.json
-Evidence: work/analysis/item-gaps-native-0.1.2539.json; work/analysis/item-gaps-tools-0.1.2541.json; work/analysis/item-gaps-proof-0.1.2542.json; work/analysis/item-gaps-loaders-0.1.2543.json; work/analysis/tested-item-gaps-0.1.2538-2544.json
-Retention: work/analysis/output-retention-0.1.2544.json — latest full ISO and nine earlier original-source xdelta versions; prior2529 image removed only after exact archived-patch decoding. Immutable public release assets retained; private0.8.1 and Tools test ISOs removed.
+## Complete field-item audit
 
 
-## Internal0.1.2529
+Cause and correction
+Earlier checks covered selected recovery/no-effect/action families and
+item descriptions. They did not enumerate the entire Item Use dispatcher
+or every native fallback. Those checks could pass while other item-use
+branches still displayed Japanese. Claims of broad category completeness
+were therefore overstated. Description/name coverage is not effect-message
+coverage.
 
-Tengai Makyou II — English test0.1.2529 / checkpoint0.1.2533 — 2026-11-07
+This pass enumerates all125 native item descriptors, all73 indexed message
+entries and the adjacent auxiliary declined-use fallback.35 remaining
+Japanese entries are fully translated, including all five Takako letters,
+incense use/wear-off, elixir reactions, compass/results, novelty actions and
+group-use text. Hell's Tama's separate fallback is linked to the existing
+complete English declined-use message:36 missed entries corrected in total.
+The real125-item menu scan discovered this fallback outside the indexed73;
+it was not silently counted as a pass. The four compass directions are
+English, with original indices and distances retained. The short shared
+collective result label is The party; both individual and party-wide
+expiration inserts are checked, with travel-group wording regressed.
 
-Scope and changes
-Seven reported NPC dialogue layouts, nine installed rows including duplicate Kikotsu Castle/inn scene variants. Remove full-width Japanese padding glyphs, normalize their leftover punctuation aliases to visible English punctuation, restore Boss! It's separation, and rewrap within existing page turns. Colored Jomon Cave, Kikotsu Castle and Owari Province and empty reading/style/speaker/voice/audio controls remain. No English words/meaning, row identity, VM caller operand or page-turn count changed. Three-stage accuracy/editorial/proofreading review in work/translation/en/ui/field-wrap-0.1.2529-REVIEWED.json;24 rows examined including adjacent dialogue, nine edited. Context/limits: work/translation/en/ui/field-wrap-0.1.2533-context-review.json. This is a local test, not a new public release or whole-script spacing cleanup.
+The pictured action reads: Manjimaru lit the Aphrodisiac Censer.
+Its next page says: The presence of enemies grew stronger!
+Native item effects, encounter-related writes, inventory and stat logic
+are retained. Full1792-byte party/field records for Censer and both rewrapped
+items match2635 before/after use for two actors. Harmful elixir outcomes and
+sexual wording are retained, as are complete letter pages and their voice.
+Runtime actor/recipient/item inserts are covered, including the separate
+expiration-message name paths. Original sounds and page/wait controls are
+retained; line breaks may move/add for English fit.
 
-Implementation
-Reuse all existing translation allocations; pad shorter packed streams with zeroes after terminator. Decoded room sizes and allocations unchanged in eight rooms, including the equal-sized earnest-character replacement. Exact byte-for-byte executable, normal Balsamiq font, heaps, arena low, original audio/movies, gameplay and save format from0.1.2518/public0.8.1. MAP grows544 compressed bytes; disc FST repacking shifts later assets by2048 bytes. All1391 other assets and executable verified exact after repacking. None of the31 typed loader descriptor records changes; rooms outside affected eight retain exact compressed data.
+Coverage and limits
+The final DOL passes the reusable literal completeness gate across74 text
+entries and125 descriptors: zero untranslated literal entries.358 native
+complete-message cases cover every entry, four actors for the35 new streams,
+normal incremental parser reveal and native Update/Confirm traversal, full
+names, page completion, glyph bounds, ABI and cleanup. Direct message tests
+seed values; they do not prove every natural effect branch was reached.
 
-Meaningful validation
--27 complete native packed-parser executions: nine rows in normal typewriter, fast reveal and slow-to-fast confirmation modes. Full glyph sequence, bounds, per-glyph widths/colors, unchanged ordered audio/voice calls, packet guards and source immutability pass; all three modes emit identical complete packets.
--All9632 ordinary FIELD rows and9632 VM operands read back from new MAP; unaffected row metadata exact. Native CNS decoder reconstructs all eight modified rooms byte-for-byte. Empty ruby/color controls retained, comma remains attached to Kikotsu Castle; no leading/trailing line spaces or isolated punctuation lines.
--Every page rendered from actual native packets and current normal-resolution atlas, reviewed visually. These are native-packet layout proofs, not actual NPC screenshots or natural scene navigation. Gallery: work/ui/field-wrap-0.1.2529/all-pages.png.
--Original-source full xdelta and exact public0.8.1 upgrade round-trip to the complete ISO SHA256. Both pass public Retro Trans Tools0.5.21 Apply xdelta backend and preserve inputs. This local test is not published to Automatic; existing public0.8.1/Automatic/RVZ assets remain unchanged.
--Rejected prototype2526 reached the native64-character line boundary on the hut's first line: fast mode completed, but typewriter stopped after64 of209 glyphs. No prototype ISO was delivered. Final2529 uses a60-character line ceiling and passes all27 full-stream cases. Retain prototype data/partial fixtures as diagnostic evidence; they are not current delivery proof.
+The actual Use/User/Item scan attempted all125 IDs. It initially recorded
+120 passes, one untranslated fallback and four generic-fixture gaps. The
+Hell's Tama fallback is corrected and its real use/reveal/cleanup rerun in
+both reveal modes, with native party effects exact to2635:121 ordinary
+handoffs passed. Return Stone, Wind Talisman and Storm Talisman have separate
+native producer/reveal checks; destination selection/natural teleport is
+not claimed. Kaiten Elixir's native group effects and cleanup match2635
+with intermediate completion flags modeled; intermediate healing pages
+are covered by direct text tests rather than that effect fixture. No item
+ID is omitted from the report. Every random result text is direct-tested;
+all random effect distributions/natural map conditions are not exercised.
 
-Hardware-sensitive risks and limits
-Modified CNS streams, disc file sizes/FST offsets and native packed text can affect optical loading, decompression, cursor/page rendering and integrity on physical GameCube. Evidence: bounded in-place allocations/strict inverse, host/native decoder equality, complete caller/payload readback, unchanged typed bindings/executable/font, full-disc repack verification and patch round-trips. No new decoded memory, static reservation, heap allocation or renderer instruction. Previous healing-message +2952 live-byte and subtitle-data/alignment risks remain inherited, with earlier evidence retained. Native fixtures and packet proofs are not physical-hardware validation. No new Dolphin session or natural access to all seven conversations, exact reported healing location, actual Card write/restart/reload, or full playthrough claim. Tests are silent; modeled audio services produce no audio. HD remains deferred.
+The125-ID scan ran on the pre-wrap candidate. The final build differs from
+that candidate only in111 bytes inside two fixed-size text slots (kinds62
+and63) and3 bytes of one auxiliary display pointer for item125, plus9 bytes
+of the short shared group display label. All code,
+other data outside these four display ranges and allocation settings are exact. The affected115/116 paths
+were rerun after wrapping;125 was rerun after its pointer correction. All74
+direct message tests were rerun against the final DOL. This provenance is
+explicit in the coverage receipt, not relabeled as a fresh125-ID run.
 
-Installation
-Use the new ISO and cold boot. For original Japanese GT2J18rev0 use0.1.2529-test.xdelta. For exact public English0.8.1 ISO/RVZ use v0.8.1-to-0.1.2529.xdelta with Retro Trans Tools0.5.21 Apply xdelta and RVZ extraction enabled. Do not use the upgrade on another English build or original Japanese. Save states can retain old code/text; use an in-game save after a fresh boot.
+General Store actual entry, long highlights/scrolling, Buy/Sell confirmation,
+funds, Back/Exit and four same-pool reopens pass, as do both password answers,
+wrong answers and editing. Extra scene/native allocator replay completes
+and restores all cells. Both xdelta routes reproduce the entire ISO through
+Retro Trans Tools0.5.23 and independent full decode/hash checks. Audio is
+silent in every native fixture. No Dolphin or physical-console test occurred.
 
-ISO: work/output/Tengai-Makyou-II-English-0.1.2529-test.iso
-Expanded ISO SHA256: 989b2215d69958b7409bb56cb1d3b8af33684089b47f11481b6fef45c134e04c
-Native evidence: work/analysis/field-wrap-native-0.1.2530.json
-Tools evidence: work/analysis/field-wrap-tools-0.1.2532.json
-Retention: work/analysis/output-retention-0.1.2533.json — latest full ISO plus nine older original-source patches, all hashes checked; prior2518 full image removed only after its archived patch decoded to the exact hash. Immutable public release assets retained.
+Hardware-sensitive changes and evidence
+The DOL grows4216 bytes for relocated strings, name-scope adapters and the
+new constructor/name insertion paths. The private arena reservation grows
+8192 bytes to8038b000, reducing scene space from1060704 to1052512 bytes.
+The native captured-scene/model/256KiB-reserve allocation replay still
+completes with359424 free bytes, compared with367616 before. The earlier
+fixed360000-byte margin check fails by576 bytes; this is explicitly retained
+as a diagnostic, not presented as a passed unchanged margin check. All native
+requests and exact free restoration pass in the paired measured replay.
+Native allocator replay is not real-hardware validation.
+
+Direct CP932 constructors for new complete messages use64x3/4608 backing
+instead of23x3/1656, potentially2952 more live bytes before rounding. Actual
+field Item Use already creates64x3. Two constructor gates, actor/item scope
+gates and alternate expiration inserts admit only the new range, retaining
+the previous chains for other sources. The auxiliary fallback changes one
+display-table pointer. The12-byte collective display-label slot keeps its
+address and is replaced by the shorter English The party label; this can
+affect other field results which share it. Collective expiry/travel tests
+cover the known related paths. Normal Balsamiq assets, native effect handlers, save
+format, all FST assets, movies and audio remain exact. Enlarged DOL bytes
+occupy verified zero disc padding; no asset offsets change. A strict inverse
+restores2635. Pointer/branch changes and reduced memory headroom can affect
+console behavior. Live-scene pressure, scene transitions, save/write/reload,
+natural NPC/map access and physical GameCube behavior remain unverified.
+
+Use the new ISO and load an in-game save.
+ISO work/output/Tengai-Makyou-II-English-0.1.2640-test.iso
+SHA-256 0d80b8f47aa0eae2aef6b608b19f96204bee75e828a8b440f52e12cb9ce64fd1
+
+## Save labels, Scroll warnings, Lottery and newspapers
 
 
-## Historical v0.8.1 testing
+Installed corrections
+1. Merchant apology: Sorry about that. The English draft at MAP-076-02-0001c4
+had remained behind an unresolved-review gate. Read the preceding offer of
+ordinary goods and follow-up invitation, resolved the apology in context,
+and relocated the full row. All three identical-source sibling rows were
+already installed; all four callers/payloads and both reveal modes pass.
+2. Save locations: add Kyoto and all ten province-qualified Ninja Village
+labels, including Kyo Ninja Village. Audit all121 native save-name records,
+94 distinct labels. Existing195 bare-name lookup is retained as fallback.
+Aliases affect the copied name only when drawing this Save list. Original
+location strings, save buffers, checksums, IDs and disk format stay exact.
+3. Scroll warnings: Manjimaru cannot use Autumn Gale. Audit the adjacent
+restriction/error family and translate the other eight missed templates:
+location restriction, exhaustion, paralysis, general seal, Yaksha's Black
+Robe seal, Helmet of Silence seal, insufficient MP and exhausted recipient.
+Existing outside-battle Scroll/Art warnings remain. Complete approved actor,
+recipient and Scroll names are expanded; native decisions/effects stay exact.
+4. Lottery actions: Buy / Cancel / Instructions. Prizes use full color and
+approved item names, including Kaiten Elixir, Seven Fortunes Orb and Lottery
+Dango Skewer. The non-item consolation remains Attendant's Smile, distinct
+from the generic item-name Smile. All11 labels are translated. Both popups
+are wider; all three state-dependent room variants in maps31/32/33 are fixed.
+Original packed source, choice IDs/order, branch targets and reward logic
+stay exact. There is no new reward or encounter behavior.
+5. Newspapers: all16 complete English headline pointers,18px Balsamiq text,
+titles and90-ryo prices on separate lines. Preserve the native2x8 selection
+IDs;36px logical row pitch,300px column pitch and280px highlights.600x384
+frame starts at20,76. Money and ryo are English; the original formatted
+amount updates after purchase. No headline or article ending is cut to fit.
 
-# Testing and limitations — 0.8.1
-
-Public0.8.1 is byte-identical to tested internal 0.1.2518 / checkpoint 0.1.2524. Original-source and exact English 0.8.0 upgrade patches use registered GameCube disc GT2J18. The shared release builder verifies complete outputs and unchanged inputs. No full game image is published. Live Automatic evidence is added after publication.
-
-Tengai Makyou II — English test0.1.2518 / checkpoint 0.1.2524 — 2026-11-07
-
-Opening subtitle repair
-Add three missing movie11/11_haha cues before Mother's existing Manjimaru... subtitle:
-21.70seconds: Mom! Can I have some more?
-24.56seconds: Is Manjimaru here?!
-26.36seconds: He won't get away with it this time!
-The child asks for another serving, then an unidentified angry caller interrupts from outside. Earlier ASR with voice-activity filtering skipped these lines. Return to original WAV with VAD disabled, both cached models and contextual/stereo crops. Exact Japanese spelling and the final warning ending remain qualified ASR/context decisions; no direct-human-listening claim. Read all seven adjacent mother utterances for accuracy; editorial and final proofreading completed. See docs/OPENING_GAP_REVIEW-0.1.2518.txt.
-
-Installed implementation
-Three22px normal-resolution Balsamiq cues use the existing native movie11 ShowFrame timeline. Existing half-second hold is capped at next cue; the final warning's small ASR overlap is trimmed at Mother's unchanged frame 846. Her seven existing cues and the other651 existing cues keep all wording/timing/geometry. Immutable strings/line records and replacement10-cue table add232 DOL bytes; update only movie11 pointer/count and section size. Renderer instructions, fonts, original movies/audio and all 1393 assets/FST/remaining disc bytes remain exact0.1.2509. No movie re-encode. The recent field Item healing fix remains installed.
+Review
+Accuracy: apology reviewed with surrounding rows4437..4439; source restriction
+roles and actor/recipient direction retained; approved item/equipment/location
+spellings reused. All16 existing headline translations retained, with ASCII
+spacing and UFO width normalized. Editorial: complete natural English warnings,
+parallel actions, color/prize separation and legible full headlines. Proofreading:
+ordinary spaces, capitalization, punctuation, complete names and all choice order
+checked. Five native-quad proofs visually inspected; panels are schematic, not
+Dolphin screenshots. Save proof shows only the changed location label; unchanged
+date/time are omitted. No extensive Japanese dialogue export was created.
 
 Validation and limits
-- All 661 cue records/strings/line pointers read back. All 658 existing words, times and geometry exact. Strict inverse restores2509 executable.
-- 2360 native subtitle boundary cases across60 movies, existing guards plus 45 new cue boundary/full-queue/duplicate/metadata/ABI cases pass with normal24px atlas. Native timeline bytes remain exact; XER high-flag engine limitation retained.
-- Actual native menu/effect/nested field healing, exact HP/one-item consumption and cleanup rechecked; earlier72-case/12-repeat healing evidence remains applicable by instruction/data identity outside the small subtitle append.
-- Muted isolated Dolphin replay uses unchanged New Game inputs, Null audio backend and Volume0, no game RAM/register writes. Actual screenshot checks show all new captions, Mother cue and cleared overlay after opening. Captured frame-to-native clock mapping varies by a few frames due to read-only sampling; native boundary tests are the exact timing evidence.
-- Original-source full xdelta and public 0.8.0 upgrade both fully decode to the expected ISO; Retro Trans Tools0.5.21 Apply xdelta backend verifies both complete images. GUI/Automatic publication is not claimed for this local test.
+All6 actual native Lottery constructors/callbacks,11 labels, all3/8 option IDs,
+normal atlas/bounds and native manager cleanup pass. Source packed list and
+reward/event branches stay byte-exact. Reward distribution/natural NPC traversal
+are not tested. All121 saved-location records/94 distinct display labels pass
+name bounds, two-line fit and exact neighboring date/time packet checks.
+Four seeded30-slot list producers execute the native checksum/calendar path;
+save buffers remain byte-exact. Their packet backing is a seeded fixture, not
+a new real card/window-constructor or physical save/write/restart/reload test.
 
-Hardware-sensitive risk
-New immutable DOL data/pointers may affect executable loading/cache/data alignment on a physical console. Append consumes232 bytes of existing private padding; no new reservation, heap or live allocation. Arena low remains0x80389000; scene 1060704 bytes; private padding 1736 bytes. Section bounds, pointer readback, strict inverse, native guards and muted Dolphin opening are evidence, not physical GameCube validation. Previous healing-message backing remains +2952 live bytes; its general-heap fragmentation/timing risk persists. No physical hardware, actual Card write/restart/reload or exact reported healing location validation. HD remains deferred.
+308 complete native warning Update/Confirm reveals pass:69 eligibility names
+for each of4 actors plus the other8 warning templates for each actor. Includes
+complete recipient names and multiline output. Actual Use -> User -> Scroll
+handoff reproduces Manjimaru/Autumn Gale; HP/MP/inventory bytes remain exact.
+Other warning decisions are source-qualified seeded direct constructor tests;
+not every natural equipment/status/map condition is reached. Both retained
+outside-battle templates are regressed. Earlier test-only line stepping was
+replaced with actual native Update/Confirm, which handles line breaks correctly.
 
-Installation
-Use the new ISO directly. To patch original Japanese GT2J18rev0, apply0.1.2518-test.xdelta. To upgrade an exact public English v0.8.0 ISO/RVZ, use v0.8.0-to-0.1.2518.xdelta with Retro Trans Tools0.5.21 Apply xdelta; keep RVZ extraction enabled. Do not apply the public upgrade to Japanese or another English build. Cold boot the new image; save states retain old code. New Game is required to replay this opening naturally. Public GitHub assets remain unchanged.
+Two actual newspaper entries execute all16 headline/price draws, native selector
+construction, seeded selection IDs,90-ryo purchase/funds updates, retry and native
+cleanup/reopen. A separate64-case directional-input pair matches original IDs
+exactly. Article completion/fades are modeled; complete article reading/scrolling,
+every availability history and natural NPC entry are not claimed. General Store
+actual entry, long highlights, Buy/Sell/funds, Back/Exit and four reopens pass.
+All4 apology rows execute in fast/typewriter modes, and every typed-room binding,
+descriptor and integrity checksum validates. All74 field-item message slots and
+125 descriptors retain the prior complete English literal coverage gate.
 
-ISO: work/output/Tengai-Makyou-II-English-0.1.2518-test.iso
-Expanded ISO SHA256: 9cdaf01108079ae93912220350f4977466f895b49ab26786ffe3c7bf92db7eee
-Evidence: work/analysis/opening-gap-native-0.1.2519.json; work/analysis/opening-gap-patches-0.1.2522.json; work/analysis/opening-gap-capture-0.1.2523.json; work/analysis/tested-opening-gap-0.1.2518-2524.json
-Retention: latest full ISO and nine prior original-source xdelta versions; work/analysis/output-retention-0.1.2524.json.
+Hardware-sensitive changes
+DOL grows6304 bytes; private boot reservation grows4096 to8038c000.
+Scene space becomes1048416 bytes. Native captured scene allocations plus
+201376-byte complete-model budget,256KiB reserve and failed1KiB request pass,
+with355328 bytes free at peak and exact release restoration.
+The test's documented lower-bound margin is300000; it is not the historical
+400000 threshold. General/save allocation replay also passes with an additional
+32640-byte newspaper text buffer. Allocation replay is not hardware validation.
 
+Actual newspaper backing changes from23x9/4968 to80x17/32640 bytes, +27672 live
+bytes before allocator rounding. Initial frame backing is23x14 before resize.
+Lottery action backing grows3x3 to10x3 (+504 bytes); prize backing7x8 to16x8
+(+1728 bytes). Source-qualified warning messages use64x3/4608 backing, with
+persistent existing per-header buffers; owner/recipient lookup shares bounds
+and ID validation. New branches, display pointer rewrites and larger allocations
+can affect physical-console play. Native ABI/guard/cleanup and heap replay pass.
 
-## Earlier healing investigation and regression detail
+MAP rooms31/19,32/19,33/19 change only two width bytes each; no decoded growth.
+Room76/2 adds32 decoded bytes for the relocated apology and redirects its native
+display caller. Existing typed descriptors/integrity and cached map header are
+rebased as needed. Strict inverse restores the prior DOL and decoded room bytes.
+ISO asset offsets do not move: verified zero padding accommodates growth. The
+1391 other FST assets, including normal font, movies and audio, remain exact.
+Both original-source and public0.8.3 upgrade patches reproduce the whole ISO
+through independent xdelta decode/hash checks and Retro Trans Tools0.5.23.
 
-Tengai Makyou II — English test 0.1.2509 / checkpoint 0.1.2514 — 2026-11-07
+No Dolphin or real GameCube test occurred. All native tests were silent.
+Natural scene transitions, full-game peaks and real card I/O remain unverified.
 
-Reported problem and reproduced cause
-The player reports that Buckwheat Dumpling healing freezes near the lakes on public v0.8.0, stopping partway through Manjimaru's name. Public v0.8.0 aliases internal 0.1.2503. The reported location itself has not been replayed; emulator and fresh-boot/save-state details were not supplied.
-Native tests reproduce a shared field Item message-parser loop on the exact public executable with valid HP 10/100. Actual Use -> User -> Item -> Target hands off to field Item producer 8005805c. Its 23x3 parent stream 8017e910 inserts the translated HP result via control 0301. That nested stream can bypass the older direct-entry recovery resize guard. In animated mode 3 the parser stalls at 800a0ac4; the partial string in the verified case is Manjimaru's HP recovered. The screenshot stops earlier; exact on-screen prefix/location timing is not claimed. Direct English-stream tests alone (2507) pass and therefore miss this parent/nested path.
-The initial exploratory 2508 diagnostic lowered max HP rather than current HP and reached the full-recovery variant. It is retained as exploratory evidence, not a valid damaged-HP reproduction. Final 2510 repeats the failure with valid current/max HP, actual native producer and partial-healing result.
+Test ISO: work/output/Tengai-Makyou-II-English-0.1.2646-test.iso
+SHA-256: 253a7557037fe32cb8ec0c2ca60b16106200dc7f0047bc5968b18ebb17158842
+Use this ISO and load an in-game save; old emulator states do not update code.
 
-Installed fix
-Change only the field Item producer's native resize argument at 800580d8, li r4,23 -> li r4,64. The existing resize call at 800580e0 now reserves 64x3 before any parent or nested result is parsed. The visual frame, font, text, IDs, RNG, healing formula, item consumption and original state-machine decisions remain unchanged. This is one instruction / one changed disc byte. Strict inverse restores the exact public executable. No translation or game asset is rewritten.
-
-Validation
-- 72 actual native menu/field-effect/nested-result cases: all 16 giver/recipient pairs in modes0/3/6; Miso Dumpling16 and Kanro Pill86 with all four actors in modes3/6; HP cap/full/zero-at-effect-boundary/low-HP cases. HP change and exactly one item consumed are verified; all other party/inventory/MP bytes remain exact. The zero-HP effect-boundary check is not natural defeated-target menu-eligibility coverage.
-- Complete expected English HP result, actual 64x3 allocation, nonvolatile ABI/stack guards and glyph bounds pass. The original Item state machine and destructor release every allocation. Dismissal/message-complete and finished-fade flags are modeled; natural controller/animation timing is not tested.
-- Twelve consecutive actual field Item produce/reveal/free cycles in the same native fixture pass with advancing native RNG and no outstanding allocation.
-- Existing direct recovery and unrelated parser fallback remain intact. Native actual Store construction, highlight/scroll, Buy/Sell funds, Back and same-machine reopening pass.
-- Both captured Save/overworld general-heap pressure replays pass with an extra 4608-byte message and a simultaneous 57600-byte save-window request. These replay captured allocation sizes, not physical Card writes or exact live fragmentation/history.
-- All 1393 assets, FST and every other disc byte match public 0.8.0. Both deltas fully decode to the target hash. Retro Trans Tools0.5.21 Apply xdelta backend also applies both to the exact expected full ISO; original inputs remain unchanged and private verification ISOs are removed.
-
-Hardware-sensitive risk and limits
-The Item message allocation rises from1656 to4608 bytes (+2952 live bytes), using the existing native allocator and destructor. This can affect general-heap headroom, fragmentation and allocation timing on a physical console. DOL size/static reservation/six fixed heaps are unchanged; scene arena remains 1060704 bytes and private free space 1968 bytes. Native guards/cleanup/pressure checks are evidence, not real-hardware validation. No actual emulator gameplay, exact lakeside save, natural scene transition, physical GameCube or actual memory-card write/restart/reload was tested. Audio/GPU endpoints are modeled/muted; no user emulator, audio, settings or save was touched. Normal-resolution Balsamiq remains; HD is deferred.
-
-Install/test
-For an existing exact English v0.8.0 ISO/RVZ, use Retro Trans Tools0.5.21 Apply xdelta with the v0.8.0-to-0.1.2509 upgrade patch. Keep Unpack CHD/RVZ input before patching enabled; save a new ISO or RVZ. This local test build is not listed in Automatic. For the exact original Japanese image, use the full 0.1.2509-test.xdelta instead. Do not apply the upgrade patch to an original Japanese or a different translated build.
-Cold boot the new image and load an in-game memory-card save; emulator save states retain old code/window state. Retest the reported location. Public GitHub release and its downloads are unchanged.
-ISO: work/output/Tengai-Makyou-II-English-0.1.2509-test.iso
-Expanded ISO SHA256: aff8c037c31d314babf0fa364869a65b8cadf3a1aea23e166445ae80cb798574
-Retention: newest ISO plus nine previous exact xdelta versions; work/analysis/output-retention-0.1.2514.json. Latest original and upgrade patches are alternate outputs of the same version.
-Evidence: work/analysis/item-healing-native-0.1.2510.json; work/analysis/item-healing-regression-0.1.2511.json; work/analysis/item-healing-patches-0.1.2513.json; work/analysis/tested-item-healing-0.1.2509-2514.json.
-
-
-## Historical0.8.0 validation
-
-# Testing and limitations — 0.8.0
-
-## Release identity
-
-Public 0.8.0 is byte-identical to internal 0.1.2503, verified at delivery checkpoint 0.1.2506. The original and output SHA-256 identities are pinned in `release/provenance.json`. No ISO is published. The shared Retro Trans Tools release builder encodes and decodes the full patch, checks every byte of the result, rehashes both inputs, and produces the canonical manifest, validation report and checksums. Live Automatic recognition, routing, download and application results are recorded separately after publication.
-
-## Existing native evidence
-
-- 101 named Scroll/Art refusal constructors, full runtime names, asynchronous reveals, text bounds, source controls, ABI/stack/heap guards and native cleanup passed. The actual invalid-use callbacks for Ice Blade, Blossom Storm and Benimaru Slash produced English without changing inventory, HP or MP. Three concurrent contexts retained independent strings after stack overwrite. 1,500 retained Item/owner/gear/Scroll expansion cases passed. Natural controller dismissal of these refusal bubbles was not tested.
-- Legal Young Grass field use still opens the original target chooser; Back preserves inventory, HP and MP. This does not verify every allowed effect.
-- Earlier checks covered 528 Battle Item hover cases; all 104 reviewed descriptions; Arts command matrices; Strategy native policy gates/import/export; Back/re-entry and same/cross-character empty/occupied transfers; persistent selected-user highlights; and actual General Store construction, long highlights/scrolling, Buy/Sell confirmations, funds updates, Back/Exit and reopening.
-- Eight castle titles passed native decode/copy/free and image checks, preserving original packed lengths, palette/alpha, texture dimensions and animation. Movie subtitle timing changes do not reencode the movies. Every THP opening movie remained identical to the original disc.
-- Latest native six-partition/graphics/HSD initialization and 1,151 captured scene allocation sizes plus a 201,376-byte model budget, 262,144-byte reserve and the former 1,024-byte failed allocation passed. Scene peak free space was 367,616 bytes. Captured general/save allocation replays, including an extra 9,216-byte message allocation and a 57,600-byte save-window request, passed with 689,984 bytes free.
-- Latest delivery verified all 1,393 assets, FST and bytes outside the changed executable against the preceding checkpoint. Public packaging does not modify those verified bytes.
-
-These checks execute native routines offline with GPU, audio and services modeled. They are not emulator playthroughs or real-hardware validation. No audio or desktop testing is needed for patch packaging.
-
-## Hardware-sensitive changes and risks
-
-The translation inherits executable hooks, relocated English text, proportional text rendering, larger native glyph backing, menu state/control changes, subtitles, and castle-title image payload changes. Risks include caller/source assumptions, dynamic name state, per-context buffer indexing and lifetime, native allocation ownership, loader/cache behavior, scene pressure, image codec behavior, and real rendering/controller timing.
-
-The final internal change adds 652 private executable bytes. Static reservation ends at `0x80389000`, up 2,560 bytes from the preceding checkpoint; scene capacity is 1,060,704 bytes, private spare capacity 1,968 bytes, and the fixed general heap remains 4,718,592 bytes. Captured pressure checks pass; these are size-pressure models, not actual transitions or card operations.
-
-HD fonts are deferred. Historical overworld-transition scene-heap failures, a separate save-window general-heap failure, and a shop constructor capacity failure were diagnosed earlier. Relevant regression evidence remains in the development workspace; native replay successes do not prove all natural gameplay paths safe. Cold boot and load an in-game save rather than using an old save state.
-
-## Remaining validation
-
-Full-game translation and a complete playthrough are not finished. Physical-console operation, real GPU/cache behavior, natural full-game transitions, actual save/write/restart/reload and long-session stability remain unverified. Public version 0.8.0 does not mean measured 80% coverage.
-
-## Live Automatic verification — 2026-11-06
-
-The published Retro Trans Tools 0.5.20 backend refreshed the public catalog, recognized the actual original ISO, selected 0.8.0 through Latest, Next version only and the explicit version, downloaded the live release patch into an empty cache, applied it, and verified the complete target hash. The output was recognized as already current; the source remained unchanged and attempts to overwrite the source or an existing output were refused. All earlier catalog release, DCP and withdrawn records remained unchanged. This tested the actual Automatic backend, not GUI automation or gameplay. [Machine-readable verification](AUTOMATIC-0.8.0.json).
-
-Hosted registration/catalog validation: [successful workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42171219265).
-
-## Live public Automatic and RVZ verification — 2026-11-07
-
-Retro Trans Tools 0.5.21 refreshed the published catalog, downloaded both patches into an initially empty cache and applied them to the actual Japanese original and exact English 0.8.0 images. Both complete outputs matched English 0.8.1, were recognized as current and preserved their inputs. Existing-output/source overwrite refusal passed. Latest and explicit 0.8.1 choose the full or small upgrade patch automatically. Next version only from 0.8.0 reaches 0.8.1; from the Japanese original it deliberately selects the earlier 0.8.0 release. All previous catalog, withdrawn and DCP records stayed unchanged. [Automatic proof](AUTOMATIC-0.8.1.json).
-
-The unchanged downloaded public Windows 0.5.21 EXE also passed actual original RVZ input, a live catalog refresh, live patch download and RVZ output. Independent extraction reproduced the exact 0.8.1 ISO hash; current recognition, source preservation and existing-output refusal passed. Private full-disc outputs were removed. The test used packaged Automatic entry points, not GUI clicking or a gameplay test. [RVZ proof](RVZ-0.8.1.json).
-
-Hosted package-registration/catalog validation: [successful scoped workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42294866155). No physical-hardware claims are added.
+## Tickets, broker and Commodity Exchange
 
 
-## Live public installation verification — 2026-11-07
+Installed corrections and family audit
+- Both direct engraved lottery-ticket messages now read: The lottery ticket has
+  33/34 engraved on it. The complete indexed field-item table remains English:
+  all74 text slots and125 descriptors pass. The new direct-source constructor
+  tests supplement that indexed gate; one does not establish the other's coverage.
+- The information broker's offer is installed in maps31/32/33, room18:
+  Hey, pal! Hey! I've got a hot tip. / How does ten ryo sound?
+  The unchanged payment command contains immediate0x00000a. All48 exchange-NPC
+  rows in the three rooms, including8 buy/sell tips and payment/refusal variants,
+  are installed and replayed in both text reveal modes. Three previously held
+  offer rows were relocated. No price, outcome or event branch was changed.
+- Commodity table: complete Rice, Mugi Grain, Beans and Salt names, headings
+  Commodity / Current Price / Record High / Record Low, and all12 original
+  current/high/low values with English ryo units. The old first-cell-only native
+  repositioning no longer scrambles expanded English words. Each cell owns
+ 20 slots with144px pitch, using18px normal Balsamiq, inside the original frame.
+- Rebind all11 previously reviewed Commodity prompts with ordinary ASCII
+  punctuation. The old direct adapter demanded exactly3 rows, so it fell back
+  to Japanese when the actual parent had5. It now preserves actual row count,
+  restores the English money row after backing growth, and preserves choices.
+  Confirmations, purchase-more, sale receipt/continue, Help, insufficient funds,
+  full bag and exit persuasion are included. Popup text commands/pages remain.
+- Commodity purchase uses its separate four-name English recipient table with
+  Free followed by the native capacity count. All four IDs and counts0/1/2/3
+  are exercised. All native inventory limits and receipt IDs stay unchanged.
+- All7 standard-shop/Commodity money producers use the same complete English
+  Money/amount/ryo path. Three older producers had retained Japanese fragments.
+  Commodity Sell has two additional real child constructors; both now allocate
+ 48x5 backing before row4 money is drawn. No fake larger fixture is substituted.
+- Kyoto was already translated in2646. This build retains that fix and rechecks
+  all121 saved-location records/94 distinct labels plus four native30-slot list
+  producers. Original save names, save bytes/checksums and IDs are unchanged.
 
-Live Automatic with Retro Trans Tools 0.5.21 passed for the Japanese original, English v0.8.0 and English v0.8.1: fresh catalog/patch downloads, exact complete output hashes, current-version recognition, preserved inputs and overwrite refusal. v0.8.0 upgrades through v0.8.1 in two steps; Latest and explicit v0.8.2 select verified routes. Existing catalog identities and old release assets are preserved. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.2.json).
+Review and verification
+Accuracy review, editorial review, accuracy recheck and proofreading completed.
+The broker's slang was localized using its native fee10; complete source meaning,
+colloquial voice and approved Mugi Grain terminology are retained. Earlier full
+Commodity wording is retained, with !/?/ellipsis punctuation made readable.
+No extensive Japanese script export was created.
 
-The unchanged published Windows 0.5.21 EXE also passed real original RVZ input → Automatic → RVZ output → independent extraction to the exact v0.8.2 ISO. It uses isolated fresh app data/cache, preserves its source and refuses existing outputs. This executes packaged command entry points, not GUI clicking or game playback. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.2.json). [Scoped catalog workflow](https://github.com/retro-trans/retro-trans-tools/actions/runs/42337820443).
+Silent native checks pass for12 real purchases and sales (4 goods x quantities
+1/10/100), exact funds deduction/refund and receipt IDs, confirmation, recipient,
+continue/back, actual Sell child construction, cleanup and same-pool reopen.
+A separate canceled-sale path executes the alternate48x5 child constructor.
+All12 table cells are complete and nonoverlapping for prices0/100/999/1000/32767;
+rendering leaves gameplay bytes exact. Four multi-page warning/Help/exit prompt
+families pass native slow and fast Update/Confirm with complete glyph order and
+bounds. All48 related field rows pass both reveal modes, and every typed room
+binding, compressed descriptor and FNV integrity value matches the rebuilt MAP.
+Actual General Store entry, long highlights, Buy/Sell confirmations, funds,
+Back/Exit and four reopens also pass. Five native glyph proofs were inspected;
+backgrounds are schematic, not Dolphin screenshots. The Save proof is label-only.
+The Sell proof demonstrates the money change; it does not certify the separate
+legacy item-description/eligibility overlay. Natural NPC traversal, all economic
+histories, full gameplay, physical card writes/restart/reload are not certified.
 
-These installation checks add no physical hardware or game-playback validation. Initial uploaded installation/testing assets stay immutable; this repository and release body contain the completed live evidence.
+Hardware-sensitive changes and validation limits
+DOL grows2688 bytes. New branches, display pointer rewrites and saved
+volatile/nonvolatile register conventions were checked in native fixtures, not
+on a console. Boot private reservation grows4096 bytes to
+0x8038d000; scene space becomes1044320 bytes, with
+3208 unused private bytes. Scene allocation replay includes
+1151 captured requests,201376 bytes of complete-model budget,256KiB reserve and
+an extra failed1KiB request. It leaves351232 bytes at peak,
+with exact release restoration. This exceeds the documented300000 test margin,
+not the older400000 margin. General/save heap pressure replay also passes with
+an extra32640-byte newspaper buffer. These are allocation replays, not hardware
+validation, exact gameplay allocation histories or full-game peak guarantees.
 
-## Live public installation verification — 2026-11-13
+Commodity table backing:23x6/3312 ->80x6/11520, +8208 live bytes.
+Commodity parent prompt backing can grow48x5/5760 ->96x5/11520, +5760.
+The two Sell child entry paths grow32x4/3072 ->48x5/5760, +2688 per live child.
+New direct-ticket contexts grow23x3/1656 ->64x3/4608, +2952 when used.
+Broader menu allocation, fragmentation and native queue pressure remain hardware
+risks. Native bounds, ABI, queues and balanced cleanup passed these scenarios.
 
-Live **Retro Trans Tools 0.5.23 Automatic** passed from the Japanese original and public English **v0.8.0, v0.8.1 and v0.8.2**. Fresh catalog and patch downloads produced the exact v0.8.3 ISO, recognized it as current, preserved all inputs and rejected overwriting existing files. Explicit v0.8.3 and Latest routes select the correct updates, and Next version only retains the original version sequence. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.3.json).
+MAP rooms31/18,32/18,33/18 grow96 decoded bytes each; only offer display references
+and appended text change. Strict inverse checks recover the preceding DOL and
+all decoded room bytes. Typed descriptors/integrity and cached headers were
+rebased. ISO asset offsets stay fixed using verified zero padding. All unrelated
+assets, including normal fonts, movies and audio, remain exact. Both original-
+source and public0.8.3 upgrade patches fully decode to the same ISO and pass
+Retro Trans Tools0.5.23 Apply xdelta. Automatic discovery/public release metadata
+was not changed because this is a local test build, not a new GitHub release.
 
-The published **Windows v0.5.23 app** passed original **RVZ → Automatic → RVZ** with a fresh app cache and live downloads. Independent extraction reproduced the complete v0.8.3 ISO hash. These are installation tests. Game playback and physical hardware were not exercised. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.3.json). [Catalog refresh](https://github.com/retro-trans/retro-trans-tools/actions/runs/43404204018).
+No Dolphin playback or real GameCube testing occurred. Native tests were silent;
+audio endpoints were intercepted. Real card I/O and natural scene transitions
+remain unverified. Load an in-game save with the new ISO; old emulator states
+retain old code. Public v0.8.3 assets remain unchanged.
+
+Test ISO: work/output/Tengai-Makyou-II-English-0.1.2651-test.iso
+SHA-256: 24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7
+
+## Inherited release evidence
+
+Earlier password, subtitle, dialogue and travel-result tests remain documented in [v0.8.3 testing notes](https://github.com/retro-trans/Tengai-Makyou-II/blob/v0.8.3/docs/TESTING.md). Those historical tests are not new gameplay or hardware validation.

@@ -1,32 +1,27 @@
 # Tengai Makyou II: Manji Maru — English patch
 
-English translation of the Japanese Nintendo GameCube release, maintained by **binhlt0402 / retro-trans**.
+Maintained by **binhlt0402 / retro-trans**.
 
-**[Download v0.8.3](https://github.com/retro-trans/Tengai-Makyou-II/releases/tag/v0.8.3)** · [Changes](CHANGELOG.md) · [Testing notes](docs/TESTING.md)
+**[Download v0.8.4](https://github.com/retro-trans/Tengai-Makyou-II/releases/tag/v0.8.4)** · [Changes](CHANGELOG.md) · [Testing notes](docs/TESTING.md)
 
-The translation is in progress. This release packages tested internal build **0.1.2615**, including English password entry and the cumulative travel, battle, subtitle, dialogue and layout fixes since v0.8.2.
+English translation for the Japanese Nintendo GameCube release. Translation remains in progress.
 
 ## Apply
 
-1. Get the current [Retro Trans Tools Windows release](https://github.com/retro-trans/retro-trans-tools/releases/latest).
-2. Open **Automatic** and **Refresh catalog**.
-3. Select your original Japanese or published English image and choose **0.8.3 / Latest**.
-4. Choose a new ISO or RVZ output and patch with verification enabled.
-5. Cold boot the new image and load an in-game save.
+Use the current [Retro Trans Tools Windows release](https://github.com/retro-trans/retro-trans-tools/releases/latest). Open **Automatic → Refresh catalog**, select your original Japanese or published English image, choose **0.8.4 / Latest**, choose a new output and patch. Automatic chooses the matching verified full or upgrade route.
 
-Compatible RVZ input and output are supported on Windows. Approve extraction when prompted. The bundled converter requires Windows 10 1903 or later, x64, and the [Microsoft Visual C++ v14 x64 runtime](https://aka.ms/vc14/vc_redist.x64.exe).
+| Your source image | Manual Apply xdelta patch |
+| --- | --- |
+| Original Japanese GameCube ISO, GT2J18 revision 0 | `Tengai-Makyou-II-English-v0.8.4.xdelta` |
+| Exact published English v0.8.3 ISO | `Tengai-Makyou-II-English-v0.8.3-to-v0.8.4.xdelta` |
 
-Manual **Apply xdelta** uses `Tengai-Makyou-II-English-v0.8.3.xdelta` for the Japanese original, or `Tengai-Makyou-II-English-v0.8.2-to-v0.8.3.xdelta` for the exact public English v0.8.2 image.
+Compatible **RVZ input and output** are supported on Windows. Approve ISO extraction, then choose RVZ output or Original format for ISO output. Recognition uses the expanded ISO identity. The converter is bundled. Windows 10 1903 or later, x64, and the [Microsoft Visual C++ v14 x64 runtime](https://aka.ms/vc14/vc_redist.x64.exe) are required.
 
-| Image | Bytes | SHA-256 |
-| --- | ---: | --- |
-| Japanese GT2J18 revision 0 | 1,459,978,240 | `0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470` |
-| English v0.8.2 upgrade source | 1,459,978,240 | `0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d` |
-| English v0.8.3 output | 1,459,978,240 | `777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac` |
+Keep verification enabled. The upgrade requires the exact public v0.8.3 image. **Cold boot the new image and load an in-game save.** Emulator states can restore old code and text.
 
-Automatic from the Japanese original and public English v0.8.0/v0.8.1/v0.8.2, plus real RVZ input and output in the published Windows v0.5.23 app, passed complete output verification. [Automatic evidence](docs/AUTOMATIC-0.8.3.json) · [RVZ evidence](docs/RVZ-0.8.3.json).
+Live Automatic and published Windows RVZ installation checks will be recorded after publication.
 
-## Included work
+## What's included
 
 
 - **UI/navigation changes for English text:** roomier labels and descriptions, two-column lists, clearer action buttons, full character names and improved placement. Consistent action → user → item flows; Give / Exchange adds a recipient and destination slot, with clearer Back navigation and a persistent selected-user highlight.
@@ -35,16 +30,38 @@ Automatic from the Japanese original and public English v0.8.0/v0.8.1/v0.8.2, pl
 - Normal-resolution Balsamiq Sans Regular, consistent **Arts** labels and eight English castle banners preserving the original frames/colors.
 - **Direct Control / AI Control** clarifies the original game's existing Strategy control setting; we did not add party-control functionality.
 
+## Changes in v0.8.4
+
+- Fix Yamainu Helmet and all 13 equipment names in the later name bank, including treasure notices, battle rewards and equipped labels.
+- Translate all 17 province destinations in both display tables and widen all three province-picker paths. Correct related item-use and self/recipient messages.
+- Translate equipment curse discovery/removal notices and the missing titles across all 14 shop entries.
+- Complete the field-item message audit: translate the missed use, reaction, novelty and fallback messages, preserving original item effects and full approved names.
+- Translate the remaining Scroll restriction/status warnings, Lottery actions and prizes, merchant apology, Kyoto and province-qualified Ninja Village save labels.
+- Separate all 16 complete newspaper headlines and prices, improve selection geometry and translate its money display.
+- Translate both engraved-ticket messages and all three information-broker offers; check the related buy/sell tips and payment/refusal variants.
+- Fix scrambled Commodity Exchange names and headings, all current/high/low price cells, skipped prompts, recipient names/free-slot counts and overlapping Japanese/English money displays. Preserve native prices, capacities and transactions.
+- Use public release versions for new builds and current documentation. Existing evidence retains its historical filenames for traceability.
+
 ## Testing and feedback
 
-This is an in-progress translation. Japanese text may remain. The new password and reward code, UI allocations and compressed room changes have passed native checks, but natural access to these scenes in Dolphin and physical GameCube play remain untested. A full playthrough, transition timing under natural memory pressure and memory-card write/restart/reload have not been validated. Earlier opening-warning source uncertainty remains documented.
+Translation is still in progress; Japanese text and errors may remain. The updated game code and larger UI buffers passed silent native checks, but no new Dolphin playthrough, natural scene-transition test, physical GameCube test or real memory-card write/restart/reload test occurred. Installation verification does not establish game or real-hardware compatibility.
 
-Hardware-sensitive changes since v0.8.2 include rewritten password editing/navigation/comparison, English answer records and a new input-buffer format inside the original 30-byte buffer. Password prompt backing requests 1,968 extra bytes and the reward refusal requests 2,880 extra bytes before allocator rounding. Travel menus can add up to 4,224 live bytes. Scoped display/parser branches and subtitle records change, and compressed MAP/header/FST metadata changes. These can affect heap pressure, fragmentation, timing and console execution. Native checks and patch verification do not establish real-hardware compatibility. Detailed evidence and limits appear in the testing notes.
+Hardware-sensitive changes since v0.8.3 include equipment/name lookup branches, item-message expansion and constructor hooks, wider province/Lottery/newspaper/Commodity buffers, new display pointers and compressed room/header/FST updates. The new newspaper backing alone adds 27,672 live bytes; Commodity table backing adds 8,208 bytes, parent prompt backing can add 5,760 bytes, and each updated Sell child adds 2,688 bytes. The final scene space is 1,044,320 bytes. Captured allocation replay with the complete-model budget and 256 KiB reserve leaves 351,232 bytes at peak, above the documented 300,000 test margin but below the older 400,000 margin. Full gameplay peaks, fragmentation, timing and console execution remain unverified. Detailed evidence and limits are in the testing notes.
 
-Report issues with the patch version, location, steps and a screenshot through [Issues](https://github.com/retro-trans/Tengai-Makyou-II/issues). Read the [release notes](docs/releases/v0.8.3.md) and [testing details](docs/TESTING.md).
+Read the [release notes](docs/releases/v0.8.4.md) and [testing details](docs/TESTING.md). Report problems with the version, location, steps and a screenshot through [Issues](https://github.com/retro-trans/Tengai-Makyou-II/issues).
+
+## Disc identities
+
+All expanded disc images have **1,459,978,240 bytes**.
+
+| Image | SHA-256 |
+| --- | --- |
+| Original Japanese ISO | `0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470` |
+| English v0.8.3 upgrade source | `777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac` |
+| English v0.8.4 ISO | `24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7` |
 
 ## Repository and credits
 
-The repository provides release documentation, a packaging recipe and provenance. Building the package requires local original and translated ISO inputs.
+Translation maintenance by **binhlt0402 / retro-trans**. Translation is LLM-assisted with a shared glossary, accuracy review, editorial review and proofreading. English font is **Balsamiq Sans Regular**, under the included SIL Open Font License. Patching uses **Retro Trans Tools**. Original game, characters, artwork and media belong to their respective rights holders. This is an unofficial fan translation.
 
-Translation maintenance by **binhlt0402 / retro-trans**. English font is **Balsamiq Sans Regular**, under the included [SIL Open Font License](docs/BalsamiqSans-OFL.txt). Translation is LLM-assisted with accuracy, editorial and proofreading review. Patching uses [Retro Trans Tools](https://github.com/retro-trans/retro-trans-tools). Original assets belong to their respective rights holders. This is an unofficial fan translation.
+Report remaining Japanese, errors or freezes through [Issues](https://github.com/retro-trans/Tengai-Makyou-II/issues), including version, location, steps and a screenshot.

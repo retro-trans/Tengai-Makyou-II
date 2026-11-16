@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.8.4 — 2026-11-16
+
+- Fix Yamainu Helmet and all 13 equipment names in the later name bank, including treasure notices, battle rewards and equipped labels.
+- Translate all 17 province destinations in both display tables and widen all three province-picker paths. Correct related item-use and self/recipient messages.
+- Translate equipment curse discovery/removal notices and the missing titles across all 14 shop entries.
+- Complete the field-item message audit: translate the missed use, reaction, novelty and fallback messages, preserving original item effects and full approved names.
+- Translate the remaining Scroll restriction/status warnings, Lottery actions and prizes, merchant apology, Kyoto and province-qualified Ninja Village save labels.
+- Separate all 16 complete newspaper headlines and prices, improve selection geometry and translate its money display.
+- Translate both engraved-ticket messages and all three information-broker offers; check the related buy/sell tips and payment/refusal variants.
+- Fix scrambled Commodity Exchange names and headings, all current/high/low price cells, skipped prompts, recipient names/free-slot counts and overlapping Japanese/English money displays. Preserve native prices, capacities and transactions.
+- Use public release versions for new builds and current documentation. Existing evidence retains its historical filenames for traceability.
+
+Hardware-sensitive changes and validation limits are recorded in docs/TESTING.md.
+
 ## 0.8.3 — 2026-11-13
 
 - Live Automatic from four source versions and the published Windows v0.5.23 RVZ workflow pass complete output verification.

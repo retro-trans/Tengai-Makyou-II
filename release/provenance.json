@@ -1,8 +1,6 @@
 {
-  "version": "0.8.3",
-  "internal_build": "0.1.2615",
-  "delivery_checkpoint": "0.1.2619",
-  "game_bytes_changed_for_public_release": false,
+  "version": "0.8.4",
+  "game_bytes_changed_for_release": false,
   "source": {
     "bytes": 1459978240,
     "sha256": "0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470",
@@ -11,24 +9,25 @@
   },
   "target": {
     "bytes": 1459978240,
-    "sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac"
+    "sha256": "24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7"
   },
   "upgrade_source": {
-    "version": "0.8.2",
+    "version": "0.8.3",
     "bytes": 1459978240,
-    "sha256": "0e615a1a8b1bd6a4faf3ba5b68e890f15ab06d05049c4d774f712429e280b46d"
+    "sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac"
   },
-  "dol_sha256": "faa48a3e469693bce2bcca6a94991e09b48a46a88a8a9adc8433f3df8ec97831",
-  "DOL_growth_since_082": 128,
-  "evidence": {
-    "work/analysis/tested-password-0.1.2615-2619.json": "7e58736c5d1dd3e754bfaf31f8416103734bdc28aa13df94c8d78f28d23a3f06",
-    "work/analysis/password-native-0.1.2616.json": "a66b31eec580924892cd3a201fa13cf46342666b33b5a791345c54d67105c29b",
-    "work/analysis/password-related-native-0.1.2616.json": "d6ea65b5e7a0926a7cf3fe9ea5b6e3efb9fdc1f41d6fdb0e135bfc37f27726f7",
-    "work/analysis/password-tools-0.1.2618.json": "d47eafe0137466a84a89d8f646a0372801f748d83a0de9d47e985b55e8075f56"
+  "dol_sha256": "8ad6a767394b267f87042dd0516a31839beadf62fc16008b51b23156ff71dff3",
+  "historical_evidence": {
+    "work/analysis/tested-market-0.1.2651-2655.json": "fb536da14889a8b9ac55ebe81e47789158cf65ac8abb6adab59e9360012fc410",
+    "work/analysis/market-native-0.1.2652.json": "e28936bbe84c62a249f03c56897f1c22c89285a04427b77e203894dad337961a",
+    "work/analysis/market-tools-0.1.2654.json": "c46c7475724b42c415d6c1dad1cefefe6c26ec47c166139bb9ad226729d3bfc4",
+    "work/analysis/tested-requested-ui-0.1.2646-2650.json": "6249f42d2579de386b5e7c2ee3ae70098bcc0fd976397e018931aa7aa580e8b0",
+    "work/analysis/item-audit-native-0.1.2641.json": "843bab572cae043907422480baa7d4219b09baf94f77644fb9ce2ddbc7d66bb4"
   },
+  "numbering": "All new builds/current documentation use public release versions; historical evidence filenames retained.",
   "hardware_tested": false,
   "full_playthrough_tested": false,
   "complete_translation": false,
   "game_audio_used": false,
-  "new_Dolphin_or_natural_scene_test": false
+  "new_Dolphin_test": false
 }
