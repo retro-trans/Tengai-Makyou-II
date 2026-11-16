@@ -578,3 +578,9 @@ SHA-256: 24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7
 ## Inherited release evidence
 
 Earlier password, subtitle, dialogue and travel-result tests remain documented in [v0.8.3 testing notes](https://github.com/retro-trans/Tengai-Makyou-II/blob/v0.8.3/docs/TESTING.md). Those historical tests are not new gameplay or hardware validation.
+
+## Live public installation verification — 2026-11-16
+
+Live **Retro Trans Tools 0.5.23 Automatic** passed from the Japanese original and public English **v0.8.0, v0.8.1, v0.8.2 and v0.8.3**. Fresh catalog and patch downloads produced the exact v0.8.4 ISO, recognized it as current, preserved all inputs and rejected overwriting existing files. Latest, explicit version and Next version only routes were checked. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.4.json).
+
+The published **Windows v0.5.23 app** passed original **RVZ → Automatic → RVZ** with a fresh patch cache and live downloads. Independent extraction reproduced the complete v0.8.4 ISO hash. Installation was verified; game playback and physical hardware were not exercised. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.4.json) · [Catalog refresh](https://github.com/retro-trans/retro-trans-tools/actions/runs/43857563169).

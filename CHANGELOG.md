@@ -2,6 +2,8 @@
 
 ## 0.8.4 — 2026-11-16
 
+- Verify live Automatic from five source versions and the published Windows RVZ input/output workflow.
+
 - Fix Yamainu Helmet and all 13 equipment names in the later name bank, including treasure notices, battle rewards and equipped labels.
 - Translate all 17 province destinations in both display tables and widen all three province-picker paths. Correct related item-use and self/recipient messages.
 - Translate equipment curse discovery/removal notices and the missing titles across all 14 shop entries.
