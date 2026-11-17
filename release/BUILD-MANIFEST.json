@@ -2,12 +2,12 @@
   "game_id": "tengai-makyou-ii",
   "game_name": "Tengai Makyou II: Manji Maru",
   "platform": "GameCube",
-  "version": "0.8.4",
-  "source_commit": "2ed4225b7a84c56700d4d3c7ffaab18427a76fa7",
+  "version": "0.8.5",
+  "source_commit": "5475ff643985efe250f806648c7a217ebac1755b",
   "schema_version": 1,
   "patches": [
     {
-      "patch": "Tengai-Makyou-II-English-v0.8.4.xdelta",
+      "patch": "Tengai-Makyou-II-English-v0.8.5.xdelta",
       "edition": "japan",
       "language": "en",
       "source_version": "original",
@@ -15,24 +15,24 @@
       "target_format": "iso",
       "source_sha256": "0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470",
       "source_bytes": 1459978240,
-      "target_sha256": "24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7",
+      "target_sha256": "eea819dee7e887c78e44eb2439d903b79f1764c5cdc93efce2ed2c9b7cbec3eb",
       "target_bytes": 1459978240,
-      "patch_sha256": "9212b3134659cc4c13ca587b08e23cf54990c1988579687f83930d641c99af1c",
-      "patch_bytes": 2204268
+      "patch_sha256": "7c85705af1120665fad56ae89c626a2d3e6b413f315f4fb091d393c8355c2355",
+      "patch_bytes": 2732704
     },
     {
-      "patch": "Tengai-Makyou-II-English-v0.8.3-to-v0.8.4.xdelta",
+      "patch": "Tengai-Makyou-II-English-v0.8.4-to-v0.8.5.xdelta",
       "edition": "japan",
       "language": "en",
-      "source_version": "0.8.3",
+      "source_version": "0.8.4",
       "source_format": "iso",
       "target_format": "iso",
-      "source_sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac",
+      "source_sha256": "24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7",
       "source_bytes": 1459978240,
-      "target_sha256": "24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7",
+      "target_sha256": "eea819dee7e887c78e44eb2439d903b79f1764c5cdc93efce2ed2c9b7cbec3eb",
       "target_bytes": 1459978240,
-      "patch_sha256": "a9f677e7a514129122a13ada7b8325332d2570da008e4833e13b1ec9e5f167e9",
-      "patch_bytes": 14141
+      "patch_sha256": "cf23761254acec06ef4ddd6f15b15ae00d71afddbb6af84d910d7717bcc62e66",
+      "patch_bytes": 576385
     }
   ],
   "package_ids": [
