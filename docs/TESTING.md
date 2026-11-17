@@ -341,3 +341,9 @@ Patch application: work/analysis/controls-tools-0.8.5.json
 ## Inherited release evidence
 
 Earlier tests and remaining limitations are retained in [v0.8.4 testing notes](https://github.com/retro-trans/Tengai-Makyou-II/blob/v0.8.4/docs/TESTING.md). Historical evidence is not a new playthrough or hardware validation.
+
+## Live public installation verification — 2026-11-17
+
+Live **Retro Trans Tools 0.5.23 Automatic** passed from the Japanese original and all five earlier public English versions, **v0.8.0 through v0.8.4**. Fresh catalog and patch downloads produced the exact v0.8.5 ISO, recognized it as current, preserved inputs and rejected overwriting existing files. Latest, explicit version and Next version only routes were checked. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.5.json).
+
+The published **Windows v0.5.23 app** passed original **RVZ → Automatic → RVZ** with a fresh patch cache and live downloads. Independent extraction reproduced the complete v0.8.5 ISO hash. Installation was verified; game playback and physical hardware were not exercised. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.5.json) · [Catalog refresh](https://github.com/retro-trans/retro-trans-tools/actions/runs/44011715493).

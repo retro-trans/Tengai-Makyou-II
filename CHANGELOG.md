@@ -2,6 +2,8 @@
 
 ## 0.8.5 — 2026-11-17
 
+- Verify live Automatic from six source versions and actual published Windows RVZ input/output.
+
 - Translate all 16 complete newspaper articles and three seller messages, including the article embedded in the purchase dialogue. Preserve headlines, prices, unlock conditions and article order.
 - Fix extra blank dialogue boxes across 1,981 messages. Audit all 9,726 installed ordinary and dynamic messages; remove 2,711 duplicate generated page stops while preserving authored text, timing and voice controls. Apply the repair to future compilation and reflow.
 - Translate the event item handover question and remove the divider and eligibility text that covered item rows. Check all 125 item highlights and party variants.
