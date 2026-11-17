@@ -1,5 +1,5 @@
 {
-  "version": "0.8.4",
+  "version": "0.8.5",
   "game_bytes_changed_for_release": false,
   "source": {
     "bytes": 1459978240,
@@ -9,22 +9,28 @@
   },
   "target": {
     "bytes": 1459978240,
-    "sha256": "24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7"
+    "sha256": "eea819dee7e887c78e44eb2439d903b79f1764c5cdc93efce2ed2c9b7cbec3eb"
   },
   "upgrade_source": {
-    "version": "0.8.3",
+    "version": "0.8.4",
     "bytes": 1459978240,
-    "sha256": "777e765ac2e424a061896cb9bd757d40416ca41df1256c6ed878c383263a82ac"
+    "sha256": "24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7"
   },
-  "dol_sha256": "8ad6a767394b267f87042dd0516a31839beadf62fc16008b51b23156ff71dff3",
+  "DOL_sha256": "599d3746796080503e1ac4a912aaa696942f88274fb828c3e6b6bd3e4c6864aa",
+  "MAP_sha256": "40b43cba715f7330e8f42852bc9f059a46654be61535a7fde00090fa0efb0f52",
+  "tested_revision": "0.8.5-controls",
+  "tested_build_plan": "work/build/0.8.5/controls/plan.json",
   "historical_evidence": {
-    "work/analysis/tested-market-0.1.2651-2655.json": "fb536da14889a8b9ac55ebe81e47789158cf65ac8abb6adab59e9360012fc410",
-    "work/analysis/market-native-0.1.2652.json": "e28936bbe84c62a249f03c56897f1c22c89285a04427b77e203894dad337961a",
-    "work/analysis/market-tools-0.1.2654.json": "c46c7475724b42c415d6c1dad1cefefe6c26ec47c166139bb9ad226729d3bfc4",
-    "work/analysis/tested-requested-ui-0.1.2646-2650.json": "6249f42d2579de386b5e7c2ee3ae70098bcc0fd976397e018931aa7aa580e8b0",
-    "work/analysis/item-audit-native-0.1.2641.json": "843bab572cae043907422480baa7d4219b09baf94f77644fb9ce2ddbc7d66bb4"
+    "work/analysis/tested-controls-0.8.5.json": "90851a684da79331e4e7e6c622e35d2332a50173ec8015ac12d331aeeee56796",
+    "work/analysis/controls-native-complete-0.8.5.json": "8595b1e8816e821360abd1f8d2eab764d788388cdbb9266078161013182ac609",
+    "work/analysis/controls-coverage-0.8.5.json": "605198a864d55f017c98e825cb715498f3ab0b973685010d4543fc896c50aec9",
+    "work/analysis/controls-tools-0.8.5.json": "6eca701571134fc8f609e05f9105c2bb2f3391871f3fdd41d63a4067c85b67bc",
+    "work/analysis/paging-coverage-0.8.5.json": "2a76b6ce90cbcb6babaf32fefbea4db659a360496a20ac998c8bc49c9994b587",
+    "work/analysis/paging-native-0.8.5.json": "a97eba7634925a980eefc796d89506dc4b04a9bbbf50ab87da8654fbda45c9fb",
+    "work/analysis/news-coverage-0.8.5.json": "963d15d49b090aba7debfa29910be419969ce2c88a7445b3c15eb457d39d5844",
+    "work/analysis/news-native-0.8.5.json": "9733316046743264a1014491ee47637b77ed398f0c26286d79d24179e6038b4d",
+    "work/analysis/handover-native-0.8.5.json": "a3c4f7b8793330b1b67377941a0801e1bff32daa44a6ab51119a240157293220"
   },
-  "numbering": "All new builds/current documentation use public release versions; historical evidence filenames retained.",
   "hardware_tested": false,
   "full_playthrough_tested": false,
   "complete_translation": false,
