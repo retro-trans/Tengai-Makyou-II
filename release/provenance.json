@@ -1,5 +1,5 @@
 {
-  "version": "0.8.5",
+  "version": "0.8.6",
   "game_bytes_changed_for_release": false,
   "source": {
     "bytes": 1459978240,
@@ -9,27 +9,28 @@
   },
   "target": {
     "bytes": 1459978240,
-    "sha256": "eea819dee7e887c78e44eb2439d903b79f1764c5cdc93efce2ed2c9b7cbec3eb"
+    "sha256": "05478cccc8a09ec692778a54167d42efe69c8d764066dd88dc2ee6ce9aa4c7a6"
   },
   "upgrade_source": {
-    "version": "0.8.4",
+    "version": "0.8.5",
     "bytes": 1459978240,
-    "sha256": "24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7"
+    "sha256": "eea819dee7e887c78e44eb2439d903b79f1764c5cdc93efce2ed2c9b7cbec3eb"
   },
-  "DOL_sha256": "599d3746796080503e1ac4a912aaa696942f88274fb828c3e6b6bd3e4c6864aa",
+  "DOL_sha256": "90133138ecab4409506a7153661af67eb60b1657bf87caf6536adde5b8a62d57",
   "MAP_sha256": "40b43cba715f7330e8f42852bc9f059a46654be61535a7fde00090fa0efb0f52",
-  "tested_revision": "0.8.5-controls",
-  "tested_build_plan": "work/build/0.8.5/controls/plan.json",
+  "tested_revision": "0.8.6-gallery",
+  "tested_build_plan": "work/build/0.8.6/gallery/current-plan.json",
   "historical_evidence": {
-    "work/analysis/tested-controls-0.8.5.json": "90851a684da79331e4e7e6c622e35d2332a50173ec8015ac12d331aeeee56796",
-    "work/analysis/controls-native-complete-0.8.5.json": "8595b1e8816e821360abd1f8d2eab764d788388cdbb9266078161013182ac609",
-    "work/analysis/controls-coverage-0.8.5.json": "605198a864d55f017c98e825cb715498f3ab0b973685010d4543fc896c50aec9",
-    "work/analysis/controls-tools-0.8.5.json": "6eca701571134fc8f609e05f9105c2bb2f3391871f3fdd41d63a4067c85b67bc",
-    "work/analysis/paging-coverage-0.8.5.json": "2a76b6ce90cbcb6babaf32fefbea4db659a360496a20ac998c8bc49c9994b587",
-    "work/analysis/paging-native-0.8.5.json": "a97eba7634925a980eefc796d89506dc4b04a9bbbf50ab87da8654fbda45c9fb",
-    "work/analysis/news-coverage-0.8.5.json": "963d15d49b090aba7debfa29910be419969ce2c88a7445b3c15eb457d39d5844",
-    "work/analysis/news-native-0.8.5.json": "9733316046743264a1014491ee47637b77ed398f0c26286d79d24179e6038b4d",
-    "work/analysis/handover-native-0.8.5.json": "a3c4f7b8793330b1b67377941a0801e1bff32daa44a6ab51119a240157293220"
+    "work/analysis/tested-gallery-0.8.6.json": "b96654bc20a020984a90978e77a9ed2d14fef3d0a2facbbb7d861cec3cc39ac6",
+    "work/analysis/gallery-native-0.8.6.json": "af94760b730382f4b70c19b9a71732870e0b83a6fec3a360c5721684d182a7ad",
+    "work/analysis/gallery-coverage-0.8.6.json": "735ae471847eb0da023cb7280cea94000ea160909c4b6dd18786a1deca320c4b",
+    "work/analysis/gallery-proofs-0.8.6.json": "a0c9a62b87f49f5bcdef379d55c6eaeaf371a9a74f1e86ac63cee1cc8cc06cc0",
+    "work/analysis/gallery-tools-0.8.6.json": "8e50381f6ff8f226e7617ece24c3d3e405218278148693bf71d5c187905ee544",
+    "work/analysis/tested-screens-0.8.6.json": "f76063b8e983646f6f48c691447568fb4ba6e6091ca715b2972223ec2f9bd22a",
+    "work/analysis/screens-native-0.8.6.json": "1f021c3a338d63eebd125e7f04d35fb785927112b97bc2b8b3492c1e92a4331b",
+    "work/analysis/screens-ready-coverage-0.8.6.json": "addd01e6498871d2e37dc06ac8f58cffe41c62b40883f619cfdd95383b4384e1",
+    "work/analysis/screens-ready-proofs-0.8.6.json": "8eb8394c0a58149be4aa1e5b26cea7d046beb580e3108adf94d31c1a44b5577e",
+    "work/analysis/screens-tools-0.8.6.json": "53e6dcd7963629a4b31e6e86c0e348e6770df3cee05a24f024e644799fc52abb"
   },
   "hardware_tested": false,
   "full_playthrough_tested": false,

@@ -2,24 +2,22 @@
 
 Maintained by **binhlt0402 / retro-trans**.
 
-**[Download v0.8.5](https://github.com/retro-trans/Tengai-Makyou-II/releases/tag/v0.8.5)** · [Changes](CHANGELOG.md) · [Testing notes](docs/TESTING.md)
+**[Download v0.8.6](https://github.com/retro-trans/Tengai-Makyou-II/releases/tag/v0.8.6)** · [Changes](CHANGELOG.md) · [Testing notes](docs/TESTING.md)
 
 English translation for the Japanese Nintendo GameCube release. Translation remains in progress.
 
 ## Apply
 
-Use the current [Retro Trans Tools Windows release](https://github.com/retro-trans/retro-trans-tools/releases/latest). Open **Automatic → Refresh catalog**, select your original Japanese or published English image, choose **0.8.5 / Latest**, choose a new output and patch.
+Use the current [Retro Trans Tools Windows release](https://github.com/retro-trans/retro-trans-tools/releases/latest). Open **Automatic → Refresh catalog**, select your original Japanese or published English image, choose **0.8.6 / Latest**, choose a new output and patch.
 
 | Source image | Manual Apply xdelta patch |
 | --- | --- |
-| Original Japanese GameCube ISO, GT2J18 revision 0 | `Tengai-Makyou-II-English-v0.8.5.xdelta` |
-| Exact published English v0.8.4 ISO | `Tengai-Makyou-II-English-v0.8.4-to-v0.8.5.xdelta` |
+| Original Japanese GameCube ISO, GT2J18 revision 0 | `Tengai-Makyou-II-English-v0.8.6.xdelta` |
+| Exact published English v0.8.5 ISO | `Tengai-Makyou-II-English-v0.8.5-to-v0.8.6.xdelta` |
 
 Earlier public English versions can use Automatic's verified upgrade chain. Compatible **RVZ input/output** is supported on Windows; allow ISO extraction and choose RVZ or ISO output. Windows 10 1903 or later, x64, and the [Visual C++ v14 x64 runtime](https://aka.ms/vc14/vc_redist.x64.exe) are required. Keep verification enabled. **Cold boot the updated image and load an in-game save**; emulator states can restore old code and text.
 
-Live **Retro Trans Tools 0.5.23 Automatic** passed from the Japanese original and all five earlier public English versions, **v0.8.0 through v0.8.4**. Fresh catalog and patch downloads produced the exact v0.8.5 ISO, recognized it as current, preserved inputs and rejected overwriting existing files. Latest, explicit version and Next version only routes were checked. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.5.json).
-
-The published **Windows v0.5.23 app** passed original **RVZ → Automatic → RVZ** with a fresh patch cache and live downloads. Independent extraction reproduced the complete v0.8.5 ISO hash. Installation was verified; game playback and physical hardware were not exercised. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.5.json) · [Catalog refresh](https://github.com/retro-trans/retro-trans-tools/actions/runs/44011715493).
+Live Automatic and published Windows RVZ installation checks will be recorded after publication.
 
 ## What's included
 
@@ -30,20 +28,22 @@ The published **Windows v0.5.23 app** passed original **RVZ → Automatic → RV
 - Normal-resolution Balsamiq Sans Regular, consistent **Arts** labels and eight English castle banners preserving the original frames/colors.
 - **Direct Control / AI Control** clarifies the original game's existing Strategy control setting; we did not add party-control functionality.
 
-## Changes in v0.8.5
+## Changes in v0.8.6
 
-- Translate all 16 complete newspaper articles and three seller messages, including the article embedded in the purchase dialogue. Preserve headlines, prices, unlock conditions and article order.
-- Fix extra blank dialogue boxes across 1,981 messages. Audit all 9,726 installed ordinary and dynamic messages; remove 2,711 duplicate generated page stops while preserving authored text, timing and voice controls. Apply the repair to future compilation and reflow.
-- Translate the event item handover question and remove the divider and eligibility text that covered item rows. Check all 125 item highlights and party variants.
-- Translate all four controller layouts, their button legends, movement/camera labels, instructions and confirmation messages. Fix heading positioning and preserve native button mappings and preset persistence.
+- Translate the Tengai Movie Gallery heading and fix the selector pitch. Audit all 97 complete English titles, scrolling, paging, locked entries, thumbnails and movie IDs; preserve movie order and unlock data.
+- Repair both event item-handover display paths: translate the copied question and remove overlays crossing item rows. Audit all 125 items in both categories and party variants.
+- Translate the main Settings default-controls question, Front/Profile choices, and all six rude-shop Endure/Run Away/Attack lists, preserving original selection branches.
+- Translate the separate battle remaining-enemies producer and clear stale text. Extend full English Scroll names and consistent two-column geometry to alternate event constructors and redraws, covering all 69 names and seven NPC headings.
 
 ## Testing and feedback
 
-Translation remains in progress; Japanese text and errors may remain. This release is byte-identical to the tested 0.8.5 controls image and retains the preceding newspaper, dialogue-page and handover fixes. Silent native checks passed for the stated message/menu families. No new Dolphin playthrough, natural scene-transition traversal, physical GameCube test or memory-card write/restart/reload test was performed. Patch installation verification is not game or real-hardware validation.
+Translation remains in progress; Japanese text and errors may remain. This release promotes the exact tested 0.8.6 gallery image and retains the preceding six-screen fixes. Silent native checks cover real constructors, selectors, native input, text queues, allocation/free guards and actual General Store entry/scrolling/Buy/Sell/funds/Exit/reopen. Earlier six-screen native evidence is retained; the final gallery increment was strictly reversed to its exact tested predecessor rather than rerunning every earlier suite. Gallery proofs use native glyph/highlight bounds and original thumbnail pixels with schematic panels; they are not Dolphin screenshots. Movie dispatch IDs were checked with a modeled player endpoint, not video playback.
 
-Hardware-sensitive changes since v0.8.4 include newspaper display pointers and a constructor hook, a 4,096-byte larger private reservation, 2,952 extra live bytes per eligible article context, dynamic text lengths/name-return phases, compressed room/header/FST bindings, and event/controller UI hooks and display pointers. Final scene space is 1,040,224 bytes; private slack is 948 bytes. Captured allocation replay for the newspaper change leaves 347,136 bytes at peak with the documented complete-model budget and 256 KiB reserve. Full gameplay peaks, fragmentation and console timing remain unverified. Normal-resolution Balsamiq font, movies, audio and save formats are unchanged. Detailed test notes record the stale Field fixture and modeled graphics/paired-single limits.
+Hardware-sensitive changes since public v0.8.5 include PPC branches/call redirects, display pointers and private line records, selector geometry, native battle clear, proportional heading placement and arena loads. Incorrect pointers, ownership, bounds or register/font-state restoration could crash a real GameCube. The DOL grows 6,108 bytes into verified zero disc padding; private reservation grows 8,192 bytes to 0x80390000, leaving 3,032 bytes unused and 1,032,032 scene bytes. The alternate Scroll constructor changes allocation demand; gallery backing remains 223,488 bytes. Strict inverse/native ABI/heap/free/fallback tests pass, but complete concurrent scene heaps, fragmentation, timing and natural transitions remain unverified. Font, MAP, movies, audio, save formats and unrelated disc bytes/offsets are unchanged.
 
-Read the [release notes](docs/releases/v0.8.5.md) and [testing details](docs/TESTING.md).
+No new Dolphin playthrough, natural NPC/gallery access, actual video playback, physical GameCube test or memory-card write/restart/reload test was performed. Native and patch-installation passes do not constitute real-hardware validation. Normal-resolution Balsamiq Sans is retained; HD testing remains deferred.
+
+Read the [release notes](docs/releases/v0.8.6.md) and [testing details](docs/TESTING.md).
 
 ## Disc identities
 
@@ -52,8 +52,8 @@ All expanded images have **1,459,978,240 bytes**.
 | Image | SHA-256 |
 | --- | --- |
 | Original Japanese ISO | `0f6840aebaa0cc5ed71ffbef6692037f6a3292d88ae8d338626f96b58bafe470` |
-| English v0.8.4 upgrade source | `24631312ba51f4e901b527e2dc83821d11a24d6744c3e3ad9e508ffefe23d2f7` |
-| English v0.8.5 ISO | `eea819dee7e887c78e44eb2439d903b79f1764c5cdc93efce2ed2c9b7cbec3eb` |
+| English v0.8.5 upgrade source | `eea819dee7e887c78e44eb2439d903b79f1764c5cdc93efce2ed2c9b7cbec3eb` |
+| English v0.8.6 ISO | `05478cccc8a09ec692778a54167d42efe69c8d764066dd88dc2ee6ce9aa4c7a6` |
 
 ## Credits
 

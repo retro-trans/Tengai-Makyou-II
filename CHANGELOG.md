@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.8.6 — 2026-11-27
+
+- Translate the Tengai Movie Gallery heading and fix the selector pitch. Audit all 97 complete English titles, scrolling, paging, locked entries, thumbnails and movie IDs; preserve movie order and unlock data.
+- Repair both event item-handover display paths: translate the copied question and remove overlays crossing item rows. Audit all 125 items in both categories and party variants.
+- Translate the main Settings default-controls question, Front/Profile choices, and all six rude-shop Endure/Run Away/Attack lists, preserving original selection branches.
+- Translate the separate battle remaining-enemies producer and clear stale text. Extend full English Scroll names and consistent two-column geometry to alternate event constructors and redraws, covering all 69 names and seven NPC headings.
+
+Hardware-sensitive changes and native verification limits are documented in docs/TESTING.md.
+
 ## 0.8.5 — 2026-11-17
 
 - Verify live Automatic from six source versions and actual published Windows RVZ input/output.
