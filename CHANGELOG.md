@@ -2,6 +2,8 @@
 
 ## 0.8.6 — 2026-11-27
 
+- Verify live Automatic from seven source versions and actual published Windows RVZ input/output.
+
 - Translate the Tengai Movie Gallery heading and fix the selector pitch. Audit all 97 complete English titles, scrolling, paging, locked entries, thumbnails and movie IDs; preserve movie order and unlock data.
 - Repair both event item-handover display paths: translate the copied question and remove overlays crossing item rows. Audit all 125 items in both categories and party variants.
 - Translate the main Settings default-controls question, Front/Profile choices, and all six rude-shop Endure/Run Away/Attack lists, preserving original selection branches.

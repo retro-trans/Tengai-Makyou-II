@@ -17,7 +17,9 @@ Use the current [Retro Trans Tools Windows release](https://github.com/retro-tra
 
 Earlier public English versions can use Automatic's verified upgrade chain. Compatible **RVZ input/output** is supported on Windows; allow ISO extraction and choose RVZ or ISO output. Windows 10 1903 or later, x64, and the [Visual C++ v14 x64 runtime](https://aka.ms/vc14/vc_redist.x64.exe) are required. Keep verification enabled. **Cold boot the updated image and load an in-game save**; emulator states can restore old code and text.
 
-Live Automatic and published Windows RVZ installation checks will be recorded after publication.
+Live **Retro Trans Tools 0.5.24 Automatic** passed from the Japanese original and all six earlier public English versions, **v0.8.0 through v0.8.5**. Fresh catalog and patch downloads produced the exact v0.8.6 ISO, recognized it as current, preserved inputs and rejected overwriting existing files. Latest, explicit version and Next version only routes were checked. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.6.json).
+
+The published **Windows v0.5.24 app** passed original **RVZ → Automatic → RVZ** with a fresh patch cache and live downloads. Independent extraction reproduced the complete v0.8.6 ISO hash. Installation was verified; game playback and physical hardware were not exercised. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.6.json) · [Catalog refresh](https://github.com/retro-trans/retro-trans-tools/actions/runs/45932752255).
 
 ## What's included
 

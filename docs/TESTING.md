@@ -207,3 +207,9 @@ Patch verification: work/analysis/gallery-tools-0.8.6.json
 ## Inherited release evidence
 
 Earlier tests and remaining limitations are retained in [v0.8.5 testing notes](https://github.com/retro-trans/Tengai-Makyou-II/blob/v0.8.5/docs/TESTING.md). Historical evidence is not a new playthrough or hardware validation.
+
+## Live public installation verification — 2026-11-27
+
+Live **Retro Trans Tools 0.5.24 Automatic** passed from the Japanese original and all six earlier public English versions, **v0.8.0 through v0.8.5**. Fresh catalog and patch downloads produced the exact v0.8.6 ISO, recognized it as current, preserved inputs and rejected overwriting existing files. Latest, explicit version and Next version only routes were checked. [Automatic evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/AUTOMATIC-0.8.6.json).
+
+The published **Windows v0.5.24 app** passed original **RVZ → Automatic → RVZ** with a fresh patch cache and live downloads. Independent extraction reproduced the complete v0.8.6 ISO hash. Installation was verified; game playback and physical hardware were not exercised. [RVZ evidence](https://github.com/retro-trans/Tengai-Makyou-II/blob/main/docs/RVZ-0.8.6.json) · [Catalog refresh](https://github.com/retro-trans/retro-trans-tools/actions/runs/45932752255).
